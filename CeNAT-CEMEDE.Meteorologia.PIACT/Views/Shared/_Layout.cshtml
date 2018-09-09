@@ -1,0 +1,133 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <title>PIACT-CEMEDE-UNA-Plataforma Interactiva de Aplicaci�n de Clima Tropical</title>
+ 
+    <!-- jQuery -->
+    <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script><!-- /Scripts/jquery.js -->
+    <!--Bootrstrap CSS-->
+    <!-- Latest compiled and minified CSS -->
+    <link rel="stylesheet" href="~/Content/Bootstrap/bootstrap.min.css">
+    <link href="../Content/MainLayoutStyle.css" rel="stylesheet" />
+    @Styles.Render("~/Content/logo-nav.css")
+    @Styles.Render("~/Content/style.css")    
+</head>
+
+<body>
+   <!-- <div id="loader-wrapper">
+        <div id="loader"></div>
+        <div class="loader-section section-left"></div>
+        <div class="loader-section section-right"></div>
+    </div>-->
+    <div id="wrapper-nli">
+        <header class="sombrahead">
+            @Html.Partial("~/Views/Shared/MenuLayout.cshtml")
+        </header>
+        <div id="content-wrapper">
+            <!-- Page Content -->
+            <section id="content" class="container-fluid">
+                @RenderBody()
+            </section>
+
+        </div>
+        <footer>
+            <section>
+                <div id="" class="mitaddivpaddingmedium col-xs-12 col-md-6">
+                    <div class="mitaddivsinpadding">
+                        <h2 class="titularpd"><strong>PIACT</strong></h2>
+                        <h4 class="subtitulo">PLATAFORMA INTERACTIVA DE APLICACI�N DEL CLIMA TROPICAL</h4>
+                        <ul class="listaredes">
+                            <li><a href="https://www.facebook.com/piactca"><img src="/img/icon_face.png" class="img-fluid responsive-flags" /></a></li>
+                            <!--<li><a href="#"><img src="/img/icon_instagram.png" class="img-fluid responsive-flags" /></a></li>
+                            <li><a href="#"><img src="/img/icon_snap.png" class="img-fluid responsive-flags" /></a></li>-->
+                            <li><a href="https://www.youtube.com/channel/UCOAOHBe6J96xxtEQf8_2dYg"><img src="/img/icon_tube.png" class="img-fluid responsive-flags" /></a></li>
+                            <!--<li><a href="#"><img src="/img/icon_twitter.png" class="img-fluid responsive-flags" /></a></li>-->
+                            <li><a href="https://api.whatsapp.com/send?phone=50688318307"><img src="/img/icon_whatsapp.png" class="img-fluid responsive-flags" /></a></li>
+                        </ul>
+                    </div>
+                </div>
+                <div id="footer-images" class="col-xs-12 col-md-6">
+                    <div class="dummy"></div>
+                    <div id="footer-conare-container" class="col-xs-4 footer-image-container">
+                        <div class="centerer"></div>
+                        <a href="http://www.cenat.ac.cr"><img src="/img/cenat.png" class="img-fluid" /></a>
+                    </div>
+                    <div id="footer-centat-container" class="col-xs-4 footer-image-container">
+                        <div class="centerer"></div>
+                        <a href="https://www.conare.ac.cr"><img src="/img/conare.png" class="img-fluid" /></a>
+                    </div>
+                    <div id="footer-observatorio-container" class="col-xs-4 footer-image-container">
+                        <div class="centerer"></div>
+                        <a href="http://www.cenat.ac.cr/index.php?option=com_content&view=article&id=78&Itemid=141"><img src="/img/observatorio.png" class="img-fluid" /></a>
+                    </div>
+                </div>
+            </section>
+            <section class="footercopy">
+                <p style="margin-bottom: 0; padding-bottom:0;">�Copyright 2017 PIACT, San Jose, Costa Rica.</p>
+            </section>
+        </footer>
+    </div>
+    <!-- Latest compiled and minified JavaScript -->
+    <script src="~/Scripts/Lib/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+    <script>
+        $(".dropdown").on("mouseover", function () {
+            $(this).attr("class", "dropdown open");
+        });
+        $(".dropdown").on("mouseout", function () {
+            if ($(this).hasClass("open")) {
+                $(this).attr("class", "dropdown");
+            }
+        });
+        var navbar = $(".navbar-fixed-top");
+        navbar = navbar.innerHeight();
+        $("#content-wrapper").css("padding-top", navbar);
+        var view_route = window.location.href;
+        var url = view_route.split("/");
+        var view_name = url[url.length - 1];
+        if (view_name == "" || view_name != "") {
+            if (view_name != "") {
+                view_route = url[url.length - 2] + "/" + url[url.length - 1];
+            }
+            if (view_route == "Home/Index" || view_name == "") {
+                $("body").addClass("home");
+            }
+        }
+    </script>
+    <script src="~/Scripts/script.js"></script>
+    <!-- Google Tag Manager -->
+    <noscript>
+        <iframe src="//www.googletagmanager.com/ns.html?id=GTM-N7CGTC"
+                height="0" width="0" style="display:none;visibility:hidden"></iframe>
+    </noscript>
+    <script>
+        (function (w, d, s, l, i) {
+            w[l] = w[l] || []; w[l].push({
+                'gtm.start':
+                new Date().getTime(), event: 'gtm.js'
+            }); var f = d.getElementsByTagName(s)[0],
+                j = d.createElement(s), dl = l != 'dataLayer' ? '&l=' + l : ''; j.async = true; j.src =
+                    '//www.googletagmanager.com/gtm.js?id=' + i + dl; f.parentNode.insertBefore(j, f);
+        })(window, document, 'script', 'dataLayer', 'GTM-N7CGTC');</script>
+    <!-- End Google Tag Manager -->
+    <script>
+        (function (i, s, o, g, r, a, m) {
+            i['GoogleAnalyticsObject'] = r; i[r] = i[r] || function () {
+                (i[r].q = i[r].q || []).push(arguments)
+            }, i[r].l = 1 * new Date(); a = s.createElement(o),
+                m = s.getElementsByTagName(o)[0]; a.async = 1; a.src = g; m.parentNode.insertBefore(a, m)
+        })(window, document, 'script', '//www.google-analytics.com/analytics.js', 'ga');
+
+        ga('create', 'UA-75698010-1', 'auto');
+        ga('send', 'pageview');
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,114 @@
+﻿@model CeNAT_CEMEDE.Meteorologia.PIACT.Models.Login
+
+@{
+    ViewBag.Title = "Login";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div id="contact-form-wrapper" class="container">
+    @if(ViewBag.Message != null){
+    <div class="alert alert-warning alert-dismissible" role="alert">
+        <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <strong>Alerta!</strong> @ViewBag.Message
+    </div>
+    }
+    <div class="panel panel-login">
+        <div class="panel-heading">
+            <div class="row">
+                <div class="col-xs-12">
+                    <p id="login-form-header">Iniciar Sesión</p>
+                </div>
+            </div>
+            <hr>
+        </div>
+        <div class="panel-body">
+            <div class="row">
+                <div class="col-lg-12">
+                    @using (Html.BeginForm("Index", "Login", FormMethod.Post, new { id = "login-form" }))
+                    {
+                        @Html.AntiForgeryToken()
+                        @Html.ValidationSummary(true)
+                        <div class="form-group">
+                            <input type="email" class="form-control" id="email" name="email" placeholder="Correo">
+                            @Html.ValidationMessageFor(model => model.email)
+                            <!--<span id="emailError" class="err">Formato de Email incorrecto  &#10006;</span>
+                            <span id="emailSuccess" class="suc">Correcto  &#10004;</span>-->
+
+                            <!--<input type="text" name="email" id="email" class="form-control" placeholder="Correo">-->
+                        </div>
+                        <div class="form-group">
+                            <input id="PasswordHash" name="PasswordHash" type="password" class="form-control" placeholder="Contraseña">
+                            @Html.ValidationMessageFor(model => model.PasswordHash)
+                            <!--<span id="PasswordHashError" class="err">La contrase&ntilde;a es muy corta  &#10006;</span>
+                            <span id="PasswordHashSuccess" class="suc">Correcto  &#10004;</span>-->
+
+                            <!--<input type="password" name="password" id="password" class="form-control" placeholder="Password">-->
+                        </div>
+                        <div class="form-group">
+                            <div class="col-md-offset-1 col-md-10">
+                                <div class="g-recaptcha" data-sitekey="6Ldd7BsUAAAAAOw70n__vzermiLXSjq_IF8gluUG"></div>
+                                <input type="submit" value="Ingresar" id="login-submit" class="form-control btn btn-login" />
+                            </div>
+                        </div>
+                    }
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>
+<script src='https://www.google.com/recaptcha/api.js' type="text/javascript"></script>
+<script src="~/Scripts/Validation/validation.js"></script>
+<!--
+<div class="form-horizontal">    
+        @*@Html.ValidationSummary(true)*@
+        <div class="well bs-component">
+            <form class="form-horizontal">
+                <fieldset>
+                    <legend>Ingresa con tus credenciales</legend>
+                    <div class="form-group is-empty">
+
+                        <label for="IDemail" class="col-md-2 control-label">Email</label>
+                        <div class="col-md-10">
+                            <input type="email" class="form-control" id="email" name="email" placeholder="">
+                            @*@Html.ValidationMessageFor(model => model.email)*@
+                            <span id="emailError" class="err" >Formato de Email incorrecto  &#10006;</span>
+                            <span id="emailSuccess" class="suc" >Correcto  &#10004;</span>
+                        </div>
+                    </div>
+
+                    <div class="form-group is-empty">
+                        <label for="inputPassword" class="col-md-2 control-label">Password</label>
+                        <div class="col-md-10">
+                            <input id="PasswordHash" name="PasswordHash" type="password" class="form-control" placeholder="Password">
+                            @*@Html.ValidationMessageFor(model => model.PasswordHash)*@
+                            <span id="PasswordHashError" class="err">La contrase&ntilde;a es muy corta  &#10006;</span>
+                            <span id="PasswordHashSuccess" class="suc">Correcto  &#10004;</span>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class ="col-md-offset-2 col-md-10">
+                            <div class="g-recaptcha" data-sitekey="6Ldd7BsUAAAAAOw70n__vzermiLXSjq_IF8gluUG"></div>
+                            <input type="submit" value="Ingresar" class="btn btn-default" />
+                        </div>
+                    </div>
+                </fieldset>
+                <hr />
+                <style>
+                    .err, .suc {
+                        display: none;
+                    }
+
+                    .err {
+                        color: red;
+                    }
+
+                    .suc {
+                        color: green;
+                    }
+                </style>
+            </form>
+               
+        </div>
+    </div>    
+-->

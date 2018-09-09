@@ -1,0 +1,24 @@
+﻿
+@{
+    ViewBag.Title = "Confirmar";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Confirmar</h2>
+
+@if (Session["mensaje"] != null)
+{
+    <div class="alert alert-success alert-dismissible" role="alert">
+        <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+         Registro Confirmado!, dale click <a href="/Login">aqu&iacute;</a>, para <a href="/Login">iniciar sesion</a>  
+        
+    </div>
+}
+
+@if (Session["mensaje"] == null)
+{
+    <div class="alert alert-success alert-dismissible" role="alert">
+        <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        Registrese o este correo ya esta registrado!!
+    </div>
+}

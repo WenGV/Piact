@@ -1,0 +1,383 @@
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<style>
+    body {
+       /* background-image: url(http://sealevel.jpl.nasa.gov/images/jason3-20160114-full.jpg);*/
+        background-position: center center;
+        background-repeat: no-repeat;
+        background-attachment: fixed;
+        background-size: cover;
+        background-color: white;
+          color: #2c3e50;
+    }
+
+
+    .panel-transparent {
+        background: none;
+    }
+
+        .panel-transparent .panel-heading {
+            background: rgba(0,0,0,0.7) ;
+        }
+
+        .panel-transparent .panel-body {
+
+        }
+
+    #panelHead {
+        background: rgb(245,245,245); /* Old browsers */
+        background: -moz-linear-gradient(left, rgba(245,245,245,0.1) 12%, rgba(245,245,245,1) 94%);
+        /*rgba(245,245,245,0.1) 12%*/ /* FF3.6-15 */
+        background: -webkit-linear-gradient(left, rgba(245,245,245,0.1) 12%,rgba(245,245,245,1) 94%); /* Chrome10-25,Safari5.1-6 */
+        background: linear-gradient(to right, rgba(245,245,245,0.1) 12%,rgba(245,245,245,1) 94%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+        filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#f5f5f5', endColorstr='#f5f5f5',GradientType=1 );
+    }
+
+    #titleHead{
+        color: #040839;
+    }
+    .uuiggiugug {
+    }
+
+hr.star-light,
+hr.star-primary {
+  padding: 0;
+  border: none;
+  border-top: solid 5px;
+  text-align: center;
+  max-width: 250px;
+  margin: 25px auto 30px;
+}
+hr.star-light:after,
+hr.star-primary:after {
+  content: "\f005";
+  font-family: FontAwesome;
+  display: inline-block;
+  position: relative;
+  top: -0.8em;
+  font-size: 2em;
+  padding: 0 0.25em;
+}
+hr.star-light {
+  border-color: white;
+}
+hr.star-light:after {
+  background-color: #18bc9c;
+  color: white;
+}
+hr.star-primary {
+  border-color: #2c3e50;
+}
+hr.star-primary:after {
+  background-color: white;
+  color: #2c3e50;
+}
+
+
+section {
+    /*padding: 100px 0;*/
+}
+section h2 {
+  margin: 0;
+  font-size: 3em;
+}
+section.success {
+  background: #18bc9c;
+  color: white;
+}
+section.success a,
+section.success a:hover,
+section.success a:focus,
+section.success a:active,
+section.success a.active {
+  color: #2c3e50;
+  outline: none;
+}
+
+</style>
+<!-- slideshow -->
+@Styles.Render("~/Content/external/slick.css")
+@Styles.Render("~/Content/external/slick-theme.css")
+@Styles.Render("~/Content/external/responsiveslides.css")
+@Styles.Render("~/Content/external/owl-carousel/owl.carousel.min.css")
+@Styles.Render("~/Content/external/owl-carousel/owl.theme.default.min.css")
+
+<script src="/Scripts/external/responsiveslides.min.js"></script>
+<script src="~/Scripts/external/owl-carousel/owl.carousel.min.js"></script>
+<script src="/Scripts/external/slick.min.js"></script>
+<script src="/Scripts/external/jquery.waypoints.min.js"></script>
+
+<!-- Slider -->
+<!--<div class="callbacks_container slidehome">
+    <ul class="rslides" id="slider4">
+    </ul>
+</div>-->
+
+<div class="owl-carousel">
+
+</div>
+
+<a class="button" href="#popup1">Evento Actual</a>
+
+<div id="popup1" class="overlaydos">
+    <div class="popup">
+        <a class="close" href="#">&times;</a>
+        <div id="mediumPubIMG4" >  </div>
+        <div class="divpopcontent">
+            <h2 id="mediumPubTitle4"></h2>
+            <hr />
+            <div class="content">
+                <p id="mediumPubText4" ></p>
+            </div>        
+            <div >
+                
+                <a href="http://piact.cenat.ac.cr/Home/enosPLUMAS" class="poplink">Ver información</a>
+            </div>
+           
+        </div>
+        
+        
+    </div>
+</div>
+
+<section id="hp-scroll">
+    <div id="" class="espacebottom col-xs-8 col-xs-offset-2">
+        <h2 class="titular">PIACT</h2>
+        <h4 class="subtitulo">PLATAFORMA INTERACTIVA DE APLICACIÓN DEL CLIMA TROPICAL</h4>
+        <p id="mediumPubText"></p>
+    </div>
+</section>
+
+
+<section id="hp-rwt" class="backimagesprono">
+    <h3 class="titularpronos">PRONÓSTICO</h3>
+    <div id="" class="widthnormal subediv backwhite col-xs-8 col-xs-offset-2">
+        <div class="estadostiempo col-xs-12 col-md-4">
+            <h3>LLUVIA</h3>
+            <img src="/img/icono_lluvia.png" class="imagemedium" />
+            <a href="/Home/CortoPlazo">Corto Plazo</a>
+        </div>
+        <div class="estadostiempo col-xs-12 col-md-4">
+            <h3>VIENTO</h3>
+            <img src="/img/icono_viento.png" class="imagemedium" />
+            <a href="/Home/windsFirstWeek">Corto Plazo</a>
+        </div>
+        <div class="estadostiempo col-xs-12 col-md-4">
+            <h3>TEMPERATURA</h3>
+            <img src="/img/icono_temperatura.png" class="imagemedium" />
+            <a href="/Home/temperatureONEweek">Corto Plazo</a>
+
+        </div>
+    </div>
+</section>
+
+<!--<section id="hp-piact-info" class="col-xs-12 backgris paddingspacesector">
+    <h2 class="titularpdcenter margintext">SECTORES <br><strong>BENEFICIADOS</strong></h2>
+
+
+    <div class="divsectores agrobene"><h3>AGROPECUARIO</h3></div>
+    <div class="divsectores hidrobene"><h3>HÍDRICO</h3></div>
+    <div class="divsectores enerbene"><h3>ENERGÍA</h3></div>
+    <div class="divsectores trabene"><h3>TRANSPORTE</h3></div>    
+    <div class="divsectores turbene"><h3>TURISMO</h3></div>
+    <div class="divsectores salbene"><h3>SALUD</h3></div>
+    <div class="divsectores indbene"><h3>INDUSTRIAL</h3></div> 
+    <div class="divsectores biobene"><h3>BIODIVERSIDAD</h3></div>
+    <div class="divsectores pesbene"><h3>PESCA</h3></div>
+    <div class="divsectores zonbene"><h3>ZONAS COSTERAS</h3></div> 
+</section>-->
+    <section id="hp-piact-info" class="col-xs-12 backgris">
+        <div id="" class="widthnormal paddingbig espacebot+tom">
+            <h2 class="titularpdcenter">¿De dónde obtiene <br><strong>PIACT la información?</strong></h2>
+            <section id="piact-offers-container" class="container col-xs-8 col-xs-offset-2">
+                <p>
+                    PIACT recopila información meteorológica y climática desarrollada por centros científicos nacionales y centros internacionales de amplia trayectoria y reconocimiento mundial.
+                </p>
+                <div class="col-xs-12">
+                    <section class="row ">
+                        <section class="col-xs-12 col-sm-6 col-md-4 col-lg-3">
+                            <a href="http://www.cpc.ncep.noaa.gov/" >
+                                <img src="~/img/info1.png" class="img-fluid">
+                            </a>
+                        </section>
+                        <section class="col-xs-12 col-sm-6 col-md-4 col-lg-3">
+                            <a href="http://sealevel.jpl.nasa.gov/">
+                                <img src="~/img/info2.png" class="img-fluid">
+                            </a>
+                        </section>
+                        <section class="col-xs-12 col-sm-6 col-md-4 col-lg-3">
+                            <a href="http://portal.iri.columbia.edu/portal/server.pt">
+                                <img src="~/img/info3.png" class="img-fluid">
+                            </a>
+                        </section>
+                        <section class="col-xs-12 col-sm-6 col-md-4 col-lg-3">
+                            <a href="http://www.bom.gov.au/">
+                                <img src="~/img/info4.png" class="img-fluid">
+                            </a>
+                        </section>
+                        <section class="col-xs-12 col-sm-6 col-md-4 col-lg-3">
+                            <a href="http://www.nrlmry.navy.mil/">
+                                <img src="~/img/info5.png" class="img-fluid">
+                            </a>
+                        </section>
+                        <section class="col-xs-12 col-sm-6 col-md-4 col-lg-3">
+                            <a href="http://www.stormsurf.com/">
+                                <img src="~/img/info6.png" class="img-fluid">
+                            </a>
+                        </section>
+                        <section class="col-xs-12 col-sm-6 col-md-4 col-lg-3">
+                            <a href="http://www.ecmwf.int/">
+                                <img src="~/img/info7.png" class="img-fluid">
+                            </a>
+                        </section>
+                        <section class="col-xs-12 col-sm-6 col-md-4 col-lg-3">
+                            <a href="http://www.knmi.nl/index_en.html?bandwidth=high">
+                                <img src="~/img/info8.png" class="img-fluid">
+                            </a>
+                        </section>
+                        <section class="col-xs-12 col-sm-6 col-md-4 col-lg-3">
+                            <a href="http://www.jamstec.go.jp/frsgc/research/d1/iod/">
+                                <img src="~/img/info9.png" class="img-fluid">
+                            </a>
+                        </section>
+                        <section class="col-xs-12 col-sm-6 col-md-4 col-lg-3">
+                            <a href="http://ds.data.jma.go.jp/tcc/tcc/index.html">
+                                <img src="~/img/info10.png" class="img-fluid">
+                            </a>
+                        </section>
+                        <section class="col-xs-12 col-sm-6 col-md-4 col-lg-3">
+                            <a href="https://web.kma.go.kr/eng/weather/forecast/ella_forecast.jsp">
+                                <img src="~/img/info11.png" class="img-fluid">
+                            </a>
+                        </section>
+                        <section class="col-xs-12 col-sm-6 col-md-4 col-lg-3">
+                            <a href="http://wxmaps.org/pix.html">
+                                <img src="~/img/info12.png" class="img-fluid">
+                            </a>
+                        </section>
+                        <section class="col-xs-12 col-sm-6 col-md-4 col-lg-3">
+                            <a href="http://weather.rap.ucar.edu/">
+                                <img src="~/img/info13.png" class="img-fluid">
+                            </a>
+                        </section>
+                        <section class="col-xs-12 col-sm-6 col-md-4 col-lg-3">
+                            <a href="http://www.tropicaltidbits.com/">
+                                <img src="~/img/info14.png" class="img-fluid">
+                            </a>
+                        </section>
+                        <section class="col-xs-12 col-sm-6 col-md-4 col-lg-3">
+                            <a href="http://www.marn.gob.sv/">
+                                <img src="~/img/info15.png" class="img-fluid">
+                            </a>
+                        </section>
+                        <section class="col-xs-12 col-sm-6 col-md-4 col-lg-3">
+                            <a href="https://www.windy.com/">
+                                <img src="~/img/info16.png" class="img-fluid">
+                            </a>
+                        </section>
+                    </section>
+                </div>
+            </section>
+        </div>
+    </section>
+
+    <section id="hp-windy" class="shadow col-xs-12">
+        <div class="iframe-overlay" onClick="style.pointerEvents='none'"></div>
+        <div id="mediumPubIMG2" class="mitaddivsinpadding">
+            @* Widity space *@
+        </div> <!-- <img src="/img/fondo_nube.png" class="completeimage" /> -->
+        <div id="what-is-windy" class="mitaddivpaddingmedium">
+            <h2 id="mediumPubTitle2" class="titularpd"></h2>
+            <p id="mediumPubText2">
+                @* <a class=”linksitio” href="#">Ver información</a>*@
+            </p>
+        </div>
+    </section>
+
+
+
+
+
+    <section id="hp-piact-managers-inst" class="backgris col-xs-12">
+        <div id="hp-im-flags" class="col-xs-12 col-md-6">
+            <div class="row">
+                <div class="logogestorcss"><a href="http://www.cenat.ac.cr"><img src="/img/logotipo_cenat.png" class="img-fluid" /></a></div>
+                <div class="logogestorcss"><a href="https://www.conare.ac.cr"><img src="/img/logotipo_conare.png" class="img-fluid" /></a></div>
+                <!--<div class="logogestorcss"><a href="http://www.plantrifinio.int/"><img src="/img/logo_trifinio.png" class="img-fluid" /></a></div>-->
+                <div class="logogestorcss"><a href="http://www.una.ac.cr/"><img src="/img/logo_una.png" class="img-fluid" /></a></div>
+                <!--<div class="logogestorcss"><a href="http://www.oas.org/es/"><img src="/img/logo_oas.png" class="img-fluid" /></a></div>-->
+            </div>
+        </div>
+
+        <div class="mitaddivpaddingmedium col-xs-12 col-md-6">
+            <h2 class="titularpd">Gestores de<br><strong> PIACT</strong></h2>
+            <p id="mediumPubText3">
+            </p>
+        </div>
+    </section>
+
+    <section id="hp-piact-managers-flags" class="fondoplanet col-xs-12">
+        <div class="col-xs-7">
+            <div class="mitaddivsinpadding textwhite col-xs-12">
+                <h2 class="titularpd">Gestores de<br><strong>PROYECTO PIACT-TRIFINIO</strong></h2>
+            </div>
+            <ul class="listapaises col-xs-12">
+                <li class="managers-flag"><a href="#"><img src="/img/icon_costarica.png" class="img-fluid responsive-flags" /></a></li>
+                <li class="managers-flag"><a href="#"><img src="/img/icon_paisuno.png" class="img-fluid responsive-flags" /></a></li>
+                <li class="managers-flag"><a href="#"><img src="/img/icon_paistres.png" class="img-fluid responsive-flags" /></a></li>
+                <li class="managers-flag"><a href="#"><img src="/img/icon_paisdos.png" class="img-fluid responsive-flags" /></a></li>
+                <!--<li class="managers-flag"><a href="#"><img src="~/img/icon_paiscuatro.png" class="img-fluid" /></a></li>-->
+                <!--<li class="managers-flag"><a href="#"><img src="/img/icon_paiscinco.png" class="img-fluid" /></a></li>-->
+                <li class="not-flag trifinio-logo"><a href="http://www.plantrifinio.int/"><img src="/img/logo_trifinio.png" class="img-fluid" /></a></li>
+                <li class="not-flag oea-logo"><a href="http://www.oas.org/es/"><img src="/img/logo_oas.png" class="img-fluid" /></a></li>
+            </ul>
+        </div>
+    </section>
+
+    <script>
+        $(document).ready(function () {
+            var owl = $('.owl-carousel'), autoplay_timeout = 5500;
+            owl.owlCarousel({
+                animateOut: 'fadeOut',//'fadeOutDown'
+                animateIn: 'fadeIn',//'fadeInUp'
+                autoHeight: true,
+                autoplay: true,
+                autoplayTimeout: autoplay_timeout,
+                autoplayHoverPause: false,
+                dots: true,
+                items: 1,
+                loop: true,
+                video: true
+            });
+        });
+        if ($("#content").length) {// && !$("body").hasClass('front')
+            /* Waypoint for isScrolled class in body, triggered when you
+               scroll to the #content element */
+            $("#hp-scroll").waypoint({
+                handler: function (direction) {
+                    /* 	The direction variable tells us the way the element
+                        was scrolled in, it has two option, down or up.
+                        Uncomment the line below to have a clear example. */
+                    //console.log("Direction: " + direction);
+                    if (direction === 'down') {
+                        $('body').addClass('isScrolled');
+                    } else {//direction === 'up'
+                        $('body').removeClass('isScrolled');
+                    }
+                },
+                /* By default a waypoint triggers when the top of the element
+                   hits the top of the window. What if we want it to trigger
+                   when the element is 20px from the top instead?
+                   The offset option can take a variety of different values
+                   to help us control where a waypoint is triggered. */
+                offset: '70%'
+            });
+        }
+    </script>
+
+    <h2 id="lblCategory" value="5"></h2>
+    <h4 id="lblSection" value="31" style="margin:0;"></h4>
+    <script src="/Scripts/ClimaticPublication/IndexClimaticPub.js"></script>

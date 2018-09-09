@@ -1,0 +1,26 @@
+﻿
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<section id="library-wrapper">
+    <img src="~/img/biblioteca.jpg" class="imgcomplete" />
+    <section>
+        <div id="" class="widthnormal paddingfoot textclass col-xs-8 col-xs-offset-2">
+            <h2 class="titular" id="lblCategory">Biblioteca</h2>
+            <h4 class="subtitulo" id="lblSection">Búsqueda de archivos</h4>
+        </div>
+    </section>
+
+    <section class="backgris paddingmedium">
+        <div class="form-group">
+            <input id="findFile" class="form-control autocomplete searchprincipal" placeholder="Enter A" />
+        </div>
+    </section>
+
+
+    <div id="panel" class="widthnormal paddingfoot textclass col-xs-8 col-xs-offset-2"></div>
+</section>
+
+<script src="/Scripts/ClimaticPublication/FilesPub.js" ></script>

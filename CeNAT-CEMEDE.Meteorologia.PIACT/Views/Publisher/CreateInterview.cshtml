@@ -1,0 +1,59 @@
+﻿
+@{
+    ViewBag.Title = "CreateInterview";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<link href="http://netdna.bootstrapcdn.com/font-awesome/3.0.2/css/font-awesome.css" rel="stylesheet">
+<div class="container">
+    <div class="col-xs-12 col-md-6">
+        <h2>Crea una nueva publicaci&oacute;n de entrevista</h2>
+
+        @using (Html.BeginForm())
+        {
+            <div class="form-group label-floating is-empty">
+                <div class="input-group">
+
+                    <label class="control-label" for="addon3a">T&iacute;tulo</label>
+                    <input type="text" id="txtTitulo" class="form-control">
+                    <p class="help-block">Ingresa el titulo de la publicacion</p>
+
+                </div>
+                <span class="material-input"></span>
+            </div>
+            <br />
+            <!--<h2>Categor&iacute;a </h2>
+        <select id="Section" class="btn btn-raised dropdown-toggle" name="Categories"></select>
+        &nbsp;-->
+            <h2>Video o Audio</h2>
+            <p>Ingrese aquí el código embebido del video de Youtube o el audio de Soundcloud:</p>
+            <form role="form">
+                <div class="form-group">
+                    <label for="comment">Texto:</label>
+                    <textarea id="podcastTXT" class="form-control" rows="5"></textarea>
+                </div>
+            </form>
+            <h2>Descripci&oacute;n</h2>
+            <p>Ingresar una descripci&oacute;n sobre su entrevista:</p>
+            <form role="form">
+                <div class="form-group">
+                    <label for="comment">Texto:</label>
+                    <textarea id="descriptionTXT" class="form-control" rows="5"></textarea>
+                </div>
+            </form>
+
+            <hr />
+            <button type="button" class="btn btn-raised btn-primary" id="btVisualize" name="btVisualize">Visualizar!</button>
+            <button type="button" class="btn btn-raised btn-primary" id="btLimpiar" name="btVisualize">Limpiar</button>
+            <button type="button" class="btn btn-raised btn-primary" id="btEnviar" data-toggle="modal" data-target=".bs-example-modal-sm" name="btVisualize">Guardar cambios!</button>
+
+
+
+        }
+    </div>
+    <div class="col-xs-12 col-md-6">
+        <div id="panel"></div>
+    </div>    
+</div>
+<script src="/Scripts/Publisher/createInterviews.js"></script>
+<script src="https://connect.soundcloud.com/sdk/sdk-3.1.2.js"></script>

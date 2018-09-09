@@ -1,0 +1,235 @@
+﻿
+@{
+    ViewBag.Title = "PubManagement";
+    Layout = "~/Views/Shared/LoggedInLayout.cshtml";
+}
+<link type="text/css" href="~/Content/bootstrap/bootstrap-theme.min.css" rel="stylesheet" />
+<link type="text/css" href="~/Content/bootstrap/bootstrap-toggle.min.css" rel="stylesheet" />
+
+<meta charset="utf-8">
+<title>Tiny, opensource, Bootstrap WYSIWYG rich text editor from MindMup</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<meta name="keywords" content="opensource rich wysiwyg text editor jquery bootstrap execCommand html5" />
+<meta name="description" content="This tiny jQuery Bootstrap WYSIWYG plugin turns any DIV into a HTML5 rich text editor" />
+
+
+<link href="/Content/index.css" rel="stylesheet">
+<link rel="apple-touch-icon" href="//mindmup.s3.amazonaws.com/lib/img/apple-touch-icon.png" />
+<link rel="shortcut icon" href="http://mindmup.s3.amazonaws.com/lib/img/favicon.ico">
+<link type="text/css" href="/Content/external/google-code-prettify/prettify.css" rel="stylesheet">
+<link type="text/css" href="/Content/external/tooltipster.bundle.min.css" rel="stylesheet">
+
+
+
+
+
+    <div class="container text-center" id="content-manager-container">
+        <div class="row">
+            <div class="col-sm-12 text-center">
+                <h1>Administraci&oacute;n del contenido clim&aacute;tico</h1>
+
+                <p>Aqui podra editar el contenido publicado en el sitio.</p>
+                <p>A continuacion podra encontrar y editar las publicaciones climaticas de cualquier tipo, archivos de la biblioteca y contenido de la pagina principal.</p>
+                <!--<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>-->
+            </div>
+        </div>
+        <hr>
+        <div class="row">
+            <h2>Selecciona la publicaci&oacute;n</h2>
+            
+            @using (Html.BeginForm())
+            {
+                <div class="form-group admin-content-select">
+                    <div class="col-xs-12 col-md-8 col-lg-10">
+                        <div class="row">
+                            <label class="col-xs-12 col-md-2 h3" style="color:black">Categor&iacute;a </label>
+                            <select class="btn btn-raised dropdown-toggle col-xs-8 col-md-9" id="Category" name="Categories"></select><!-- col-md-10 -->
+                            <div class="col-xs-2 col-md-1">
+                                <span class="glyphicon glyphicon-question-sign tooltip" title="Aqui puede elegir el tipo de publicacion a publicar o editar" aria-hidden="true"></span>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <label class="col-xs-12 col-md-2 h3" style="color:black">Secci&oacute;n</label>
+                            <select class="btn btn-raised dropdown-toggle col-xs-8 col-md-9" id="Sections" name="Sections"></select><!-- col-md-10 -->
+                            <div class="col-xs-2 col-md-1">
+                                <span class="glyphicon glyphicon-question-sign tooltip" title="Aqui puede elegir secciones o subcategorias de la publicacion principal" aria-hidden="true"></span>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <label class="col-xs-12 col-md-2 h3" style="color:black">Recurso </label>
+                            <select class="btn btn-raised dropdown-toggle col-xs-8 col-md-9" id="Resource" name="Resources"> </select><!-- col-md-10 -->
+                            <div class="col-xs-2 col-md-1">
+                                <span class="glyphicon glyphicon-question-sign tooltip" title="Aqui puede elegir publicaciones basado en las opciones elegidas anteriormente" aria-hidden="true"></span>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <label class="col-xs-12 col-md-2 h3" style="color:black">Nueva posici&oacute;n </label>
+                            <select class="btn btn-raised dropdown-toggle col-xs-8 col-md-9" id="Position" name="Position"> </select><!-- col-md-10 -->
+                            <div class="col-xs-2 col-md-1">
+                                <span class="glyphicon glyphicon-question-sign tooltip" title="Aqui puede cambiar la posicion de una publicacion respecto a las demas para que se muestre en la posicion deseada" aria-hidden="true"></span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-xs-12 col-md-4 col-lg-2">
+                        <div class="col-xs-12">
+                            <h2>Ver publicaciones</h2>
+                            <!--<div class="col-md-12">-->
+
+                                <div class="radio radio-primary">
+                                    <label style="color:black">
+                                        <input type="radio" name="optionsRadios" checked="" id="radioInactive">
+                                        <span class="circle"></span><span class="check"></span>
+                                        Inactivo
+                                    </label>
+                                </div>
+                            <div class="radio radio-primary">
+                                <label style="color:black">
+                                    <input type="radio" name="optionsRadios" id="radioActive" checked="">
+                                    <span class="circle"></span><span class="check"></span>
+                                    Activo
+                                </label>
+                            </div>
+                            <!--</div>-->
+                        </div>
+                        <div class="col-xs-12">
+                            <h3>Estado</h3>
+                            <input type="checkbox" checked id="statusCheck" data-toggle="toggle">
+                            <p id="StatusText" class="help-block text-left">Publicación Activada</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <div class="col-xs-12 col-md-6" id="content-manager-interpretation-wrapper">
+                        <div class="form-group label-floating is-empty has-success">
+                            <p id="txtAuthorEmail"></p>
+                            <div class="input-group">
+                                <h2 class="control-label" for="txtTitulo">T&iacute;tulo</h2>
+                                <input class="form-control" type="text" id="txtTitulo" value="" />
+                                <p class="help-block">Ingresa el nombre de esta publicaci&oacute;n</p>
+                                <span class="input-group-btn">
+                                </span><span class="material-input"></span>
+                            </div>
+                        </div>
+                        <h2>Interpretaci&oacute;n:</h2>
+                            <div class="hero-unit">
+                                <div id="alerts"></div>
+                                <div class="btn-toolbar" data-role="editor-toolbar" data-target="#editor">
+                                    <div class="btn-group">
+                                        <a class="btn dropdown-toggle" data-toggle="dropdown" title="Font"><i class="icon-font"></i><b class="caret"></b></a>
+                                        <ul class="dropdown-menu"></ul>
+                                    </div>
+                                    <div class="btn-group">
+                                        <a class="btn dropdown-toggle" data-toggle="dropdown" title="Font Size"><i class="icon-text-height"></i>&nbsp;<b class="caret"></b></a>
+                                        <ul class="dropdown-menu">
+                                            <li><a data-edit="fontSize 5"><font size="5">Huge</font></a></li>
+                                            <li><a data-edit="fontSize 3"><font size="3">Normal</font></a></li>
+                                            <li><a data-edit="fontSize 1"><font size="1">Small</font></a></li>
+                                        </ul>
+                                    </div>
+                                    <div class="btn-group">
+                                        <a class="btn" data-edit="bold" title="Bold (Ctrl/Cmd+B)"><i class="icon-bold"></i></a>
+                                        <a class="btn" data-edit="italic" title="Italic (Ctrl/Cmd+I)"><i class="icon-italic"></i></a>
+                                        <a class="btn" data-edit="strikethrough" title="Strikethrough"><i class="icon-strikethrough"></i></a>
+                                        <a class="btn" data-edit="underline" title="Underline (Ctrl/Cmd+U)"><i class="icon-underline"></i></a>
+                                    </div>
+                                    <div class="btn-group">
+                                        <a class="btn" data-edit="insertunorderedlist" title="Bullet list"><i class="icon-list-ul"></i></a>
+                                        <a class="btn" data-edit="insertorderedlist" title="Number list"><i class="icon-list-ol"></i></a>
+                                        <a class="btn" data-edit="outdent" title="Reduce indent (Shift+Tab)"><i class="icon-indent-left"></i></a>
+                                        <a class="btn" data-edit="indent" title="Indent (Tab)"><i class="icon-indent-right"></i></a>
+                                    </div>
+                                    <div class="btn-group">
+                                        <a class="btn" data-edit="justifyleft" title="Align Left (Ctrl/Cmd+L)"><i class="icon-align-left"></i></a>
+                                        <a class="btn" data-edit="justifycenter" title="Center (Ctrl/Cmd+E)"><i class="icon-align-center"></i></a>
+                                        <a class="btn" data-edit="justifyright" title="Align Right (Ctrl/Cmd+R)"><i class="icon-align-right"></i></a>
+                                        <a class="btn" data-edit="justifyfull" title="Justify (Ctrl/Cmd+J)"><i class="icon-align-justify"></i></a>
+                                    </div>
+                                    <div class="btn-group">
+                                        <a class="btn dropdown-toggle" data-toggle="dropdown" title="Hyperlink"><i class="icon-link"></i></a>
+                                        <div class="dropdown-menu input-append">
+                                            <input class="span2" placeholder="URL" type="text" data-edit="createLink" />
+                                            <button class="btn" type="button">Add</button>
+                                        </div>
+                                        <a class="btn" data-edit="unlink" title="Remove Hyperlink"><i class="icon-cut"></i></a>
+
+                                    </div>
+
+                                    <div class="btn-group">
+                                        <a class="btn" title="Insert picture (or just drag & drop)" id="pictureBtn"><i class="icon-picture"></i></a>
+                                        <input id="imgUpload" type="file" data-role="magic-overlay" data-target="#pictureBtn" data-edit="insertImage" />
+                                    </div>
+                                    <div class="btn-group">
+                                        <a class="btn" data-edit="undo" title="Undo (Ctrl/Cmd+Z)"><i class="icon-undo"></i></a>
+                                        <a class="btn" data-edit="redo" title="Redo (Ctrl/Cmd+Y)"><i class="icon-repeat"></i></a>
+                                    </div>
+                                    <input type="text" data-edit="inserttext" id="voiceBtn">
+                                </div>
+                                <div id="editor"></div>
+                            </div>
+                        <div id="fb-root"></div>
+                        <button type="button" class="btn btn-raised btn-success" id="btEnviar" data-toggle="modal" data-target=".bs-example-modal-sm" name="btVisualize">Guardar cambios!</button>
+                    </div>
+                    <div class="col-xs-12 col-md-6">
+                        <div class="container-fluid" id="formVisual">
+                            <!--PANEL-->
+
+                            <div  id="visualizePanel">
+
+                               
+                            </div>
+
+                            <!--PANEL-->
+                        </div>
+                    </div>
+                </div>
+            }
+
+        </div>
+        </div>
+
+<!-- Small modal -->
+<!--<div class="container-fluid">-->
+    <div class="modal fade bs-example-modal-sm"  tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" style="font-size: 150%;background-color: rgba(255, 255, 255, 0);">
+        <div class="modal-dialog">
+            <div id="msgBody" class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                    <h4 class="modal-title">Alerta</h4>
+                </div>
+                <div class="modal-body">
+                    <p id="msgTitle"></p>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-primary" data-dismiss="modal">OK</button>
+
+                </div>
+            </div>
+        </div>
+    </div>
+<!--</div>-->
+
+
+
+<script src="//cdnjs.cloudflare.com/ajax/libs/jquery-easing/1.3/jquery.easing.min.js"></script>
+<script src="~/Content/JqueryUI/jquery-ui-1.12.0/jquery-ui.min.js"></script>
+<script src="~/Scripts/script.js"></script>
+<script src="/Scripts/Publisher/publisher.js"></script>
+<script src="/Content/bootstrap/bootstrap-toggle.min.js"></script>
+<script src="/Scripts/external/jquery.hotkeys.js"></script>
+<script src="/Scripts/external/google-code-prettify/prettify.js"></script>
+<script src="/Scripts/external/tooltipster.bundle.min.js"></script>
+<script src="/Scripts/external/typeahead.bundle.js"></script>
+<script src="/Scripts/JqueryEDITOR.js"></script>
+<script src="/Scripts/bootstrap-wysiwyg.js"></script>
+
+
+
+<script>
+    $(document).ready(function() {
+        $('.tooltip').tooltipster({
+            theme: 'tooltipster-noir'
+        });
+    });
+</script>
+

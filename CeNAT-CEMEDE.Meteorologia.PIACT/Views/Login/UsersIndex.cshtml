@@ -1,0 +1,86 @@
+﻿@model IEnumerable<CeNAT_CEMEDE.Meteorologia.PIACT.Models.Users>
+
+@{
+    ViewBag.Title = "UsersIndex";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="container users-view">
+    <h2>Administracion de usuarios</h2>
+@using (Html.BeginForm("UsersIndex", "Login", FormMethod.Post))
+{
+    <table id="myTable" class="table">
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.name)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.lastName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.phoneNumber)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Pais)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Provincia)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.email)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.company)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Profession)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Role)
+            </th>
+            <th></th>
+        </tr>
+        @foreach (var item in Model)
+        {
+
+            <tr title="@Html.DisplayFor(modelItem => item.Status)">
+                <td>
+                    @Html.DisplayFor(modelItem => item.name)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.lastName)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.phoneNumber)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Pais)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Provincia)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.email)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.company)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Profession)
+                </td>
+                <td class="user-view-role">
+                    @Html.DisplayFor(modelItem => item.Role)
+                </td>
+                <td>
+                    <input type="hidden" value="@item.Status" name="Status" />
+                        <input type="hidden" value="@item.email" name="email" />
+                        <input dirName="@item.Status" name="@item.email" class="indexInput" value="Desactivar" type="button" />
+                </td>
+
+            </tr>
+        }
+    </table>
+}
+</div>
+
+<script src="~/Scripts/Login/login.js"></script>

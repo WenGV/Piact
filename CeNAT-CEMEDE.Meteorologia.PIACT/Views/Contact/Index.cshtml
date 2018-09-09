@@ -1,0 +1,93 @@
+﻿@model CeNAT_CEMEDE.Meteorologia.PIACT.Models.Contact
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<img src="~/img/contacto.jpg" class="imgcomplete" />
+
+@if (ViewBag.Message != null)
+{
+    <div class="alert alert-warning alert-dismissible" role="alert">
+        <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <strong>@Html.Raw(ViewBag.Message)</strong><!--Email o Password Incorrectos.-->
+    </div>
+}
+
+<section id="contact-content-wrapper">
+    <div id="" class="widthnormal paddingsmall textclass col-xs-8 col-xs-offset-2">
+        <h2 class="titular">Contacto</h2>
+
+
+        <div class="panel">
+            <div class="panel-body">
+                <div class="row">
+                    <div class="col-lg-12">
+                        @using (Html.BeginForm("Index", "Contact", FormMethod.Post, new { id = "login-form" }))
+                        {
+                            @Html.AntiForgeryToken()
+                            @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                            <div class="form-group">
+                                @Html.EditorFor(model => model.firstName, new { htmlAttributes = new { @class = "form-control", @placeholder = "Nombre" } })
+                                @Html.ValidationMessageFor(model => model.firstName, "", new { @class = "text-danger" })
+                            </div>
+
+                            <div class="form-group">
+                                @Html.EditorFor(model => model.lastNames, new { htmlAttributes = new { @class = "form-control", @placeholder = "Apellidos" } })
+                                @Html.ValidationMessageFor(model => model.lastNames, "", new { @class = "text-danger" })
+                            </div>
+
+                            <div class="form-group">
+                                @Html.EditorFor(model => model.email, new { htmlAttributes = new { @class = "form-control", @placeholder = "Correo electrónico" } })
+                                @Html.ValidationMessageFor(model => model.email, "", new { @class = "text-danger" })
+                            </div>
+
+                            <div class="form-group">
+                                @Html.EditorFor(model => model.occupation, new { htmlAttributes = new { @class = "form-control", @placeholder = "Profesión" } })
+                                @Html.ValidationMessageFor(model => model.occupation, "", new { @class = "text-danger" })
+                            </div>
+
+                            <div class="form-group">
+                                @Html.EditorFor(model => model.phoneNumber, new { htmlAttributes = new { @class = "form-control", @placeholder = "Numero de Teléfono" } })
+                                @Html.ValidationMessageFor(model => model.phoneNumber, "", new { @class = "text-danger" })
+                            </div>
+
+                            <div class="form-group">
+                                @Html.EditorFor(model => model.company, new { htmlAttributes = new { @class = "form-control", @placeholder = "Empresa" } })
+                                @Html.ValidationMessageFor(model => model.company, "", new { @class = "text-danger" })
+                            </div>
+
+                            <div class="form-group">
+                                @Html.EditorFor(model => model.subject, new { htmlAttributes = new { @class = "form-control", @placeholder = "Asunto" } })
+                                @Html.ValidationMessageFor(model => model.subject, "", new { @class = "text-danger" })
+                            </div>
+
+                            <div class="form-group">
+                                <div class="col-sm-6 col-sm-offset-3">
+                                    <input type="submit" value="Enviar" id="login-submit" class="form-control btn btn-login" />
+                                </div>
+                            </div>
+                        }
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+
+        <!--<h4 class="subtitulo">Sub-titulo de página web</h4>-->
+        <div class="panel">
+            <p><strong>Teléfono: </strong> (506)2519-5835</p>
+            <p><strong>Correo: </strong>piact@cenat.ac.cr</p>
+            <p><strong>CeNAT: </strong> 1.3km al norte de la Embajada Estados Unidos Edificio Centro Nacional de Alta Tecnología, Pavas, Costa Rica. </p>
+            
+            <div id="contact-gmaps-container">
+                <div class="iframe-overlay" onClick="style.pointerEvents='none'"></div>
+                <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3929.7996347660264!2d-84.1267676859584!3d9.95062227661454!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x8fa0fb687f6d81db%3A0x46fd58168ef4c5bb!2sNational+Center+for+High+Technology!5e0!3m2!1sen!2scr!4v1496680813803" height="450" frameborder="0" style="border:0" allowfullscreen class="widthcomplete"></iframe>
+            </div>
+        </div>
+    </div>
+
+</section>
+

@@ -1,0 +1,73 @@
+
+@{
+    ViewBag.Title = "ImagenesSatelitales";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<section class="climatic-publication-images">
+    <div id="" class="widthnormal paddingsmall textclass col-xs-8 col-xs-offset-2">
+        <h2 class="titular" id="lblCategory"  value="1">Imágenes Satelitales</h2>
+        <h4 class="subtitulo dnd" id="lblSection" value="1">Imágenes Satelitales</h4>
+        <!--<div class="leftcontentlist">-->
+        <!--</div>-->
+        <div id="filter-sat-img-type">
+            <p>Imágenes satelitales del canal visible (VIS) e infrarrojo (IR) actualizadas cada 30 minutos y mostrando las condiciones actuales sobre Centroamérica.</p>
+            <p>A continuación puede elegir imágenes de países de Centroamérica o de la región del Trifinio.</p>
+            <p class="textpaises" id='select'>Seleccione el país o región</p>
+            <div id="select-country-wrapper">
+                <ul class="selectpais toc-odd level-1" id="sel-option">
+                    <!--<li class="pn"><a href="#" value="29">Panam&#225;</a></li>-->
+                    <!--<li class="nc"><a href="#" value="30">Nicaragua</a></li>-->
+                    <li class="tr"><a href="#" value="28">Trifinio</a></li>
+<li class="gua"><a href="#" value="23">Guatemala</a></li>
+                    <li class="hd"><a href="#" value="22">Honduras</a></li>
+                    <li class="sal"><a href="#" value="24">El Salvador</a></li>
+<li class="cr"><a href="#" value="21">Costa Rica</a></li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</section>
+<script type="text/javascript">    
+    $(document).ready(function() {
+        $('#filter-sat-img-type').on("click", "#select", function () {
+            var select_display = $('#sel-option').css("display");
+            if (select_display === "none") {
+                $('#sel-option').show();
+            } else {
+                $('#sel-option').hide();
+            }
+        });
+        $('#sel-option a').on("click", function (e) {
+            e.preventDefault();
+            $('#select').text($(this).text());
+            $('#sel-option').hide();
+            $(this).addClass('current');
+        })
+    });
+    
+</script>
+<!--<section>
+    <div id="" class="widthnormal paddingsmall textclass">
+        <h2 class="titular" id="lblCategory"  value="1">Tiempo Actual</h2>
+        <h4 class="subtitulo" id="lblSection" value="1">Imágenes Satelitales</h4>
+    </div>
+</section>
+
+<section id="filter-sat-img-type" class="backgris paddingmedium">
+    <div>
+        <p class="textpaises">Selecciona la imagen: </p>
+        <ul class="selectpais">
+            <li><a href="#" value="21">Costa Rica</a></li>
+            <li><a href="#" value="29">Panama</a></li>
+            <li><a href="#" value="30">Nicaragua</a></li>
+            <li><a href="#" value="28">Plan Trifineo</a></li>
+            <li><a href="#" value="22">Honduras</a></li>
+            <li><a href="#" value="24">El Salvador</a></li>
+            <li><a href="#" value="23">Guatemala</a></li>
+        </ul>
+    </div>
+</section>-->
+
+<div id="panel" class="center-block container climatic-publication-content"></div>
+
+<script src="/Scripts/ClimaticPublication/climaticPubLoad.js"></script>
