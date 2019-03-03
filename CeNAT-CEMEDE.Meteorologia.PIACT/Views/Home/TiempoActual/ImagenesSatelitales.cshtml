@@ -1,12 +1,12 @@
 
 @{
-    ViewBag.Title = "ImagenesSatelitales";
+    ViewBag.Title = "";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 <section class="climatic-publication-images">
     <div id="" class="widthnormal paddingsmall textclass col-xs-8 col-xs-offset-2">
-        <h2 class="titular" id="lblCategory"  value="1">Imágenes Satelitales</h2>
-        <h4 class="subtitulo dnd" id="lblSection" value="1">Imágenes Satelitales</h4>
+        <h2 class="titular" id="lblCategory"  value="1"></h2>
+        <h4 class="subtitulo dnd" id="lblSection" value="1"></h4>
         <!--<div class="leftcontentlist">-->
         <!--</div>-->
         <div id="filter-sat-img-type">
@@ -15,13 +15,13 @@
             <p class="textpaises" id='select'>Seleccione el país o región</p>
             <div id="select-country-wrapper">
                 <ul class="selectpais toc-odd level-1" id="sel-option">
-                    <!--<li class="pn"><a href="#" value="29">Panam&#225;</a></li>-->
-                    <!--<li class="nc"><a href="#" value="30">Nicaragua</a></li>-->
+                    <li class="pn"><a href="#" value="29">Panam&#225;</a></li>
+                    <li class="cr"><a href="#" value="21">Costa Rica</a></li>
+                    <li class="nc"><a href="#" value="30">Nicaragua</a></li>
                     <li class="tr"><a href="#" value="28">Trifinio</a></li>
 <li class="gua"><a href="#" value="23">Guatemala</a></li>
                     <li class="hd"><a href="#" value="22">Honduras</a></li>
                     <li class="sal"><a href="#" value="24">El Salvador</a></li>
-<li class="cr"><a href="#" value="21">Costa Rica</a></li>
                 </ul>
             </div>
         </div>
@@ -71,3 +71,12 @@
 <div id="panel" class="center-block container climatic-publication-content"></div>
 
 <script src="/Scripts/ClimaticPublication/climaticPubLoad.js"></script>
+<!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-116689455-1"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'UA-116689455-1');
+</script>

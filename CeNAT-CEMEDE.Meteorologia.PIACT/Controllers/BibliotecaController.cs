@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using System.Data;
 using System.IO;
 using System.Linq;
+using System.Net;
 using System.Web;
 using System.Web.Mvc;
 
@@ -12,6 +13,105 @@ namespace CeNAT_CEMEDE.Meteorologia.PIACT.Controllers
 {
     public class BibliotecaController : Controller
     {
+        public ActionResult Biblioteca()
+        {
+            return View();
+        }
+
+
+        public ActionResult ClimaticCharts()
+        {
+            return View();
+        }
+
+        //Function below, work with the Publication Management Module, to send Pub data
+        [HttpPost]
+        public JsonResult worldWeatherGetCityInfo(string city)
+        {
+            if (string.IsNullOrEmpty(city))
+            {
+                return null;
+            }
+            try
+            {
+
+
+                int cityID = 0;
+                Int32.TryParse(city, out cityID);
+                if (!(cityID < 9999 && cityID > 1)) { return null; }
+
+                string meteorologia = "";
+
+                HttpWebRequest request = (HttpWebRequest)WebRequest.Create(@"http://worldweather.wmo.int/en/json/" + city + "_en.xml");
+                using (HttpWebResponse response = (HttpWebResponse)request.GetResponse())
+                using (Stream stream = response.GetResponseStream())
+                using (StreamReader reader = new StreamReader(stream))
+                {
+                    var json = reader.ReadToEnd();
+                    meteorologia = json;
+
+                    return Json(meteorologia, JsonRequestBehavior.AllowGet);
+                }
+            }
+            catch (Exception)
+            {
+                return null;
+            }
+        }
+
+        [HttpGet]
+        public JsonResult worldWeatherGetPresent()
+        {
+            string meteorologia = "";
+
+            HttpWebRequest request = (HttpWebRequest)WebRequest.Create(@"http://worldweather.wmo.int/en/json/present.xml");
+            using (HttpWebResponse response = (HttpWebResponse)request.GetResponse())
+            using (Stream stream = response.GetResponseStream())
+            using (StreamReader reader = new StreamReader(stream))
+            {
+                // var json = @"{ ""present"": "+reader.ReadToEnd() + "};";
+                var json = @reader.ReadToEnd();
+                meteorologia = json;
+
+                return Json(meteorologia, JsonRequestBehavior.AllowGet);
+            }
+        }
+
+        [HttpGet]
+        public JsonResult worldWeatherGetCountries_Map()
+        {
+            string meteorologia = "";
+
+            HttpWebRequest request = (HttpWebRequest)WebRequest.Create(@"http://worldweather.wmo.int/en/json/Country_en.xml");
+            using (HttpWebResponse response = (HttpWebResponse)request.GetResponse())
+            using (Stream stream = response.GetResponseStream())
+            using (StreamReader reader = new StreamReader(stream))
+            {
+                // var json = @"{ ""present"": "+reader.ReadToEnd() + "};";
+                var json = @reader.ReadToEnd();
+                meteorologia = json;
+
+                return Json(meteorologia, JsonRequestBehavior.AllowGet);
+            }
+        }
+
+        //[HttpGet]
+        //public JsonResult worldWeatherGetCountries_InfoSiteMap()
+        //{
+        //    string meteorologia = "";
+
+        //    HttpWebRequest request = (HttpWebRequest)WebRequest.Create(@"http://worldweather.wmo.int/en/json/Region_en.xml");
+        //    using (HttpWebResponse response = (HttpWebResponse)request.GetResponse())
+        //    using (Stream stream = response.GetResponseStream())
+        //    using (StreamReader reader = new StreamReader(stream))
+        //    {
+        //        // var json = @"{ ""present"": "+reader.ReadToEnd() + "};";
+        //        var json = @reader.ReadToEnd();
+        //        meteorologia = json;
+
+        //        return Json(meteorologia, JsonRequestBehavior.AllowGet);
+        //    }
+        //}
         // GET: Files
         public ActionResult Index()
         {
@@ -87,7 +187,7 @@ namespace CeNAT_CEMEDE.Meteorologia.PIACT.Controllers
 
 
 
-        [HttpPost]
+        //[HttpPost]
         public JsonResult findFileByName(ClimaticPublication pub)
         {
             if (HttpContext.Request.IsAjaxRequest())

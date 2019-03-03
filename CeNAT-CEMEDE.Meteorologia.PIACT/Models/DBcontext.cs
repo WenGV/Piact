@@ -484,6 +484,7 @@ namespace CeNAT_CEMEDE.Meteorologia.PIACT.Models
                 {
                     cmd.CommandType = CommandType.StoredProcedure;
                     cmd.Parameters.AddWithValue("@idSection", idSection);
+                    cmd.Parameters.AddWithValue("@PageNumber", page);
                     _con.Open();
                     SqlDataReader reader = cmd.ExecuteReader();
                     List<ClimaticPublication> list = new List<ClimaticPublication>();

@@ -1,16 +1,19 @@
 ﻿using CeNAT_CEMEDE.Meteorologia.PIACT.Models;
+using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
+using System.Net;
 using System.Web;
 using System.Web.Mvc;
 
 namespace CeNAT_CEMEDE.Meteorologia.PIACT.Controllers
 {
-    public class HomeController : Controller 
+    public class HomeController : Controller
     {
         //
-       // GET: /Home/ Last update
+        // GET: /Home/ Last update
         public ActionResult Index()
         {
             return View();
@@ -40,12 +43,13 @@ namespace CeNAT_CEMEDE.Meteorologia.PIACT.Controllers
                 if (pub.nodeIndex > 0)
                 {
                     href = ScrapContext.scrapPubByPubIndex(pub.source, pub.nodeIndex, pub.tagType);
-                }else
+                }
+                else
                 {
 
                     switch (pub.idPublication)
                     {
-                
+
                         case 26:
                             href = ScrapContext.scrap26anomSST();
                             break;
@@ -73,23 +77,26 @@ namespace CeNAT_CEMEDE.Meteorologia.PIACT.Controllers
             }
         }
 
+
+
+
         #region TiempoActual
 
         //Imagenes Satelitales MAIN
         public ActionResult ImagenesSatelitales()
-            {
-                return View("TiempoActual/ImagenesSatelitales");
-            }
+        {
+            return View("TiempoActual/ImagenesSatelitales");
+        }
 
-            public ActionResult Atlantico()
-            {
-                return View("TiempoActual/Atlantico");
-            }
+        public ActionResult Atlantico()
+        {
+            return View("TiempoActual/Atlantico");
+        }
 
-            public ActionResult Pacifico()
-            {
-                return View("TiempoActual/Pacifico");
-            }
+        public ActionResult Pacifico()
+        {
+            return View("TiempoActual/Pacifico");
+        }
 
         //public ActionResult CondicionesTropico()
         //{
@@ -140,7 +147,8 @@ namespace CeNAT_CEMEDE.Meteorologia.PIACT.Controllers
 
         //PRONOSTICOS
 
-        public ActionResult enosGRAFICOS(){
+        public ActionResult enosGRAFICOS()
+        {
             return View();
         }
 
@@ -149,7 +157,8 @@ namespace CeNAT_CEMEDE.Meteorologia.PIACT.Controllers
             return View();
         }
 
-        public ActionResult CortoPlazo(){
+        public ActionResult CortoPlazo()
+        {
             return View();
         }
 
@@ -215,7 +224,6 @@ namespace CeNAT_CEMEDE.Meteorologia.PIACT.Controllers
         {
             return View();
         }
-
         //  Load meteorological publications for common clients
         /*   [HttpPost]
            public JsonResult getPubBySection(Sections section)
@@ -244,9 +252,9 @@ namespace CeNAT_CEMEDE.Meteorologia.PIACT.Controllers
 
         // Load meteorological publications for common clients
         [HttpPost]
-           public JsonResult getPubBySection(Sections section)
-           {
-        
+        public JsonResult getPubBySection(Sections section)
+        {
+
 
             string userIpAddress = this.Request.UserHostAddress;
 
@@ -256,10 +264,10 @@ namespace CeNAT_CEMEDE.Meteorologia.PIACT.Controllers
                 {
                     List<ClimaticPublication> Publication_List = new List<ClimaticPublication>();
                     int id = 0;
-                    Int32.TryParse(section.Name,out id);//Security feature, handeling indexes
+                    Int32.TryParse(section.Name, out id);//Security feature, handeling indexes
 
                     //Case for get DAta in Entrevistas
-                    if (id == 32 ||id == 19 || id == 20)
+                    if (id == 32 || id == 19 || id == 20)
                     {
                         int pageNum = 0;
                         Int32.TryParse(section.pageNum, out pageNum);//Security feature, handeling indexes
@@ -273,8 +281,8 @@ namespace CeNAT_CEMEDE.Meteorologia.PIACT.Controllers
                         Publication_List = (List<ClimaticPublication>)Session["Publication_List"];
                     }
 
-
-
+                    if (Publication_List is null) return null;
+                    //NULL EXCEPTION TODO
                     foreach (ClimaticPublication pub in Publication_List)
                     {
                         //IF SCRAP IS 0  =  not apply getScrapData
@@ -308,7 +316,7 @@ namespace CeNAT_CEMEDE.Meteorologia.PIACT.Controllers
                         }
 
                     }
-                   
+
                     return Json(Publication_List, JsonRequestBehavior.AllowGet);
                 }
             }
@@ -325,7 +333,7 @@ namespace CeNAT_CEMEDE.Meteorologia.PIACT.Controllers
                 }
             }
             return null;
-           }
+        }
 
         /*************EXPERINMENT DINAMIC RENDER**************/
 
@@ -377,7 +385,7 @@ namespace CeNAT_CEMEDE.Meteorologia.PIACT.Controllers
                 List<ClimaticPublication> Publication_List = (List<ClimaticPublication>)Session["Publication_List"];
                 //int TripeIndex = 0;//count data, on every 3 publication with State on True
 
-                int index = (int) Session["Index"];
+                int index = (int)Session["Index"];
                 string userIpAddress = this.Request.UserHostAddress;
 
                 try
@@ -389,7 +397,7 @@ namespace CeNAT_CEMEDE.Meteorologia.PIACT.Controllers
                     }
                     else
                     {
-                      
+
 
                         data.Add(Publication_List.ElementAt(index));
                         //Below, if next data is the contain the last item, send the current and it's all
@@ -403,16 +411,16 @@ namespace CeNAT_CEMEDE.Meteorologia.PIACT.Controllers
                             pub.source += getScrapData(pub);
                             if (pub.source == "") { pub.State = 0; }
                         }
-                        index = index+2;
+                        index = index + 2;
                         Session["Index"] = index;
                     }
-                    
+
                 }
                 catch (Exception ex)
                 {
                     //Log error
                     DBcontext.setPiactProblem(ex.Message, ex.StackTrace, "NA", userIpAddress, "BETA");
-                    
+
                 }
 
                 return Json(data, JsonRequestBehavior.AllowGet);
@@ -430,44 +438,44 @@ namespace CeNAT_CEMEDE.Meteorologia.PIACT.Controllers
             try
             {
 
-            ClimaticPublication pub = new ClimaticPublication();
-            if (HttpContext.Request.IsAjaxRequest())
-            {
-                //get the source attribute
-                pub = pub.getPublicationInfo(data.idResource);
-                //NOT SOURCE YET, TODO
-                //IF SCRAP IS 0  =  not apply getScrapData
-                if (pub.Scrap == 1)
+                ClimaticPublication pub = new ClimaticPublication();
+                if (HttpContext.Request.IsAjaxRequest())
                 {
-                    String href = getScrapData(pub);
-                    if (href.Length <= 1)
+                    //get the source attribute
+                    pub = pub.getPublicationInfo(data.idResource);
+                    //NOT SOURCE YET, TODO
+                    //IF SCRAP IS 0  =  not apply getScrapData
+                    if (pub.Scrap == 1)
                     {
-                        //This below, should prevent the bad requested Publications to be displayed   
-                        pub.State = 0;
+                        String href = getScrapData(pub);
+                        if (href.Length <= 1)
+                        {
+                            //This below, should prevent the bad requested Publications to be displayed   
+                            pub.State = 0;
 
-                    }
-                    else
-                    {
-                        if (pub.OriginalURL.Length == 0)
-                        {
-                            pub.source += href;
-                        }
-                        else if (href.Length >= 90)
-                        {
-                            pub.source = href;
                         }
                         else
                         {
-                            //Original ID has the reference value
-                            pub.source = pub.OriginalURL += href;
+                            if (pub.OriginalURL.Length == 0)
+                            {
+                                pub.source += href;
+                            }
+                            else if (href.Length >= 90)
+                            {
+                                pub.source = href;
+                            }
+                            else
+                            {
+                                //Original ID has the reference value
+                                pub.source = pub.OriginalURL += href;
+                            }
                         }
+
                     }
+                    return Json(pub, JsonRequestBehavior.AllowGet);
 
                 }
-                return Json(pub, JsonRequestBehavior.AllowGet);
-
-            }
-            return null;
+                return null;
             }
             catch (Exception ex)
             {

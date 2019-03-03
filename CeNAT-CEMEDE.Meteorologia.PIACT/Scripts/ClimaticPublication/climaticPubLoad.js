@@ -62,6 +62,12 @@ $(function () {
                         iterator = 1,
                         imageList;
 
+                        //TODO fix this line 
+var l = listSrc.length-1;
+for(var i = 0; i < l; i++){(listSrc[i]=listSrc[i].replace("set","sep")); (listSrc[i]=listSrc[i].replace("set","sep"));}
+
+
+
                     listSrc.pop();
                     if (idPublication === 67) { listSrc.shift() };
                     publications_amount = listSrc.length

@@ -51,9 +51,20 @@
             var imgorvid = source.split("/");
             //If the array contains a youtube video url goes through, if not it's an image
             if ($.inArray("www.youtube.com", imgorvid) != -1) {
-                var slider = "<div class='item-video'>" +
-                                "<a class='owl-video' href='" + source + "'></a>" +
-                             "</div>";
+                    var youtubeID = "//img.youtube.com/vi/" + (source.substring(32)) +"/hqdefault.jpg";  //"//img.youtube.com/vi/OiC_5NJjzCo/hqdefault.jpg";
+
+                    var slider =
+                        " <div class='owl-item active' data-video='" + source + "' style='width: 100%;'>" +
+                        "   <div class='item-video' style='height: 585.063px;'>" +
+                        "      <div class='owl-video-wrapper'>" +
+                        "         <a class='owl-video' href='" + source + "' style='display: none;'>" +
+
+                        "        </a>" +
+                        "       <div class='owl-video-play-icon'></div>" +
+                        "      <div class='owl-video-tn' style='opacity:1;background-image:url(" +youtubeID+")'></div>" +
+                        " </div>" +
+                        "</div>"
+                        "</div>";
             } else {
                 var slider = "<div class='item'>" +
                                  "<img src='" + source + "' alt=''>" +
@@ -65,12 +76,18 @@
                              "</div>";
             }
             $('.owl-carousel').owlCarousel('add', slider).owlCarousel('refresh');
+
+
+
+            //        var slide_height = $(".owl-carousel .owl-stage .owl-item:first-child").height();
+            //        $(".owl-carousel .owl-item .item-video").css("height", slide_height);
+
             //if (counter == 3) {
-            setTimeout(function () {
-                    //Gives video wrapper of the same height in the other images
-                    var slide_height = $(".owl-carousel .owl-stage .owl-item:first-child").height();
-                    $(".owl-carousel .owl-item .item-video").css("height", slide_height);
-                }, 1000);
+            //setTimeout(function () {
+            //        //Gives video wrapper of the same height in the other images
+            //        var slide_height = $(".owl-carousel .owl-stage .owl-item:first-child").height();
+            //        $(".owl-carousel .owl-item .item-video").css("height", slide_height);
+            //    }, 1000);
             //}
         }
     }

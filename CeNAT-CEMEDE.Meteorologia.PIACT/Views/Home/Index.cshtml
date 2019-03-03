@@ -1,6 +1,6 @@
 
 @{
-    ViewBag.Title = "Index";
+    ViewBag.Title = "";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 <style>
@@ -284,7 +284,7 @@ section.success a.active {
         </div>
     </section>
 
-    <section id="hp-windy" class="shadow col-xs-12">
+    <section id="hp-windy" class="backgris col-xs-12">
         <div class="iframe-overlay" onClick="style.pointerEvents='none'"></div>
         <div id="mediumPubIMG2" class="mitaddivsinpadding">
             @* Widity space *@
@@ -319,7 +319,7 @@ section.success a.active {
         </div>
     </section>
 
-    <section id="hp-piact-managers-flags" class="fondoplanet col-xs-12">
+    <section id="hp-piact-managers-flags" class="fondoplanet">
         <div class="col-xs-7">
             <div class="mitaddivsinpadding textwhite col-xs-12">
                 <h2 class="titularpd">Gestores de<br><strong>PROYECTO PIACT-TRIFINIO</strong></h2>
@@ -358,7 +358,7 @@ section.success a.active {
                scroll to the #content element */
             $("#hp-scroll").waypoint({
                 handler: function (direction) {
-                    /* 	The direction variable tells us the way the element
+                    /*  The direction variable tells us the way the element
                         was scrolled in, it has two option, down or up.
                         Uncomment the line below to have a clear example. */
                     //console.log("Direction: " + direction);
@@ -381,3 +381,12 @@ section.success a.active {
     <h2 id="lblCategory" value="5"></h2>
     <h4 id="lblSection" value="31" style="margin:0;"></h4>
     <script src="/Scripts/ClimaticPublication/IndexClimaticPub.js"></script>
+<!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-116689455-1"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'UA-116689455-1');
+</script>

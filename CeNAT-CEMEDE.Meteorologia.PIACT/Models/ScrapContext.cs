@@ -1,6 +1,7 @@
 ﻿using HtmlAgilityPack;
 using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.Linq;
 using System.Web;
 
@@ -131,8 +132,57 @@ namespace CeNAT_CEMEDE.Meteorologia.PIACT.Models
         }
 
 
+        public static String getDateInitials(String date) {
+
+            switch (date)
+            {
+                case "":
+                    break;
+                default:
+                    break;
+                
+
+            }
+
+            return "";
+        }
 
 
+
+        private static string getDateFormat(string num) 
+        {
+            switch (num)
+            {
+                case "01":
+                    return "jan";
+                case "02":
+                    return "feb";
+                case "03":
+                    return "mar";
+                case "04":
+                    return "apr";
+                case "05":
+                    return "may";
+                case "06":
+                    return "jun";
+                case "07":
+                    return "jul";
+                case "08":
+                    return "ago";
+                case "09":
+                    return "set";
+                case "10":
+                    return "oct";
+                case "11":
+                    return "nov";
+                case "12":
+                    return "dec";
+                default:
+                    return null;
+        }
+            
+            
+        }
 
 
         public static String scrapInGroup(int idPub, String source)
@@ -150,14 +200,10 @@ namespace CeNAT_CEMEDE.Meteorologia.PIACT.Models
                 switch (idPub)
                 {
                     case 66:
-
-
-                        //String month = DateTime.Now.ToString("MMM").ToLower();
-                        String month = DateTime.Today.AddDays(-10).ToString("MMM").ToLower();
-                        month = month.Replace(".", "");
+                 
+                        String month = getDateFormat(DateTime.Now.ToString("MM").ToLower());
+                        //String month = DateTime.Today.AddDays(-10).ToString("MMM").ToLower();
                         String year = DateTime.Now.Year.ToString();
-
-
                         document = getHtmlWeb.Load(source + "var1=" + year + "&var2=" + month);//updatedLinkPlumas66());
                                                                                                //document = getHtmlWeb.Load("https://gmao.gsfc.nasa.gov/cgi-bin/products/climateforecasts/GEOS5/forecastindices_n34.cgi?var1=2017&var2=may");//updatedLinkPlumas66());
                         uri = "http://gmao.gsfc.nasa.gov";
@@ -175,11 +221,10 @@ namespace CeNAT_CEMEDE.Meteorologia.PIACT.Models
                 {
                     foreach (var aTag in aTags)
                     {
-                        href = uri + aTag.Attributes["src"].Value;
 
+                        href = uri + aTag.Attributes["src"].Value;
                         if (href.Contains(".png"))
                         {
-
                             res += href + "\n";
                         }
                     }
@@ -194,49 +239,6 @@ namespace CeNAT_CEMEDE.Meteorologia.PIACT.Models
             return res;
         }
 
-        private static string GetAbbreviatedMonthName(int month)
-        {
-            switch (month)
-            {
-                case 1:
-                    return "Jan";
-
-                case 2:
-                    return "Feb";
-
-                case 3:
-                    return "Mar";
-
-                case 4:
-                    return "Apr";
-
-                case 5:
-                    return "May";
-
-                case 6:
-                    return "Jun";
-
-                case 7:
-                    return "Jul";
-
-                case 8:
-                    return "Aug";
-
-                case 9:
-                    return "Sep";
-
-                case 10:
-                    return "Oct";
-
-                case 11:
-                    return "Nov";
-
-                case 12:
-                    return "Dec";
-                default:
-                    return "";
-            }
-        }
     }
       
 }
