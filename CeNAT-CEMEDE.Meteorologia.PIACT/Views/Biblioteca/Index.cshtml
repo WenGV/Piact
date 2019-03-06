@@ -3,7 +3,13 @@
     ViewBag.Title = "Index";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
-
+img
+{
+  margin-bottom:-5px;
+  width: calc(100%, 1);
+  height: 60px;
+  float: right;
+}
 <section id="library-wrapper">
     <img src="~/img/biblioteca.jpg" class="imgcomplete" />
     <section>
@@ -15,12 +21,29 @@
 
     <section class="backgris paddingmedium">
         <div class="form-group">
-            <input id="findFile" class="form-control autocomplete searchprincipal" placeholder="Enter A" />
         </div>
     </section>
 
+<div class="container">
 
-    <div id="panel" class="widthnormal paddingfoot textclass col-xs-8 col-xs-offset-2"></div>
+
+  <div  class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+      <div class="post-preview"><a href="../Biblioteca/ClimaticCharts">
+          
+        <h2  class="post-title">Registro Clim&aacute;tico (Centro Am&eacute;rica)</h2> 
+        <div class="icon"> 
+            <img src="~/img/charts.png">
+        </div>
+        <h3 class="post-subtitle">Observa el registro hist&oacute;rico de 1960-1990</h3>
+        </a>
+        <p class="post-meta">Fuente <a href="">IMN,...</a></p>
+      </div>
+
+
+			
+      <hr>
+    </div>
+</div>
 </section>
 
 <script src="/Scripts/ClimaticPublication/FilesPub.js" ></script>
