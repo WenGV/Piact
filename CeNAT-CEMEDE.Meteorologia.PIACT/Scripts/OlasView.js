@@ -1539,6 +1539,7 @@ function build_breadcrumb() {
 //setup content include breadcrumb, country info, capital city info (if exist)
 //      , initaialize map and alphabetical index search
 function setup_content() {
+    $('.not_available').remove();
 
     $('title').html("World Weather Information Service");
     //$('title').html(cityObj[0].cityName + " | World Weather Information Service");
