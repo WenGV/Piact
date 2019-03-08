@@ -1,49 +1,98 @@
 ﻿
 @{
     ViewBag.Title = "";
+    Layout = "~/Views/Shared/_Layout.cshtml";
 }
-<h2></h2>
-<!DOCTYPE html>
-<html>
-<head>
-    <meta charset="utf-8" />
-    <title></title>
-</head>
-<body>
 
-<div class="container">
-<div class="col-xs-6">
-  <select class="form-control" name="select1" id="select1">
-    <option value=""></option>
-  </select>
-</div>
-<div class="col-xs-6">
-  <select class="form-control" name="select2" id="select2">
-    <option value=""></option>
-</select>
-</div>
-<hr>
+<style>
+    img {
+        margin-bottom: -5px;
+        width: calc(100%, 1);
 
-<hr>
-<div class="col-xs-6">
-	<div class="climatological_area" id="climatological_area_container">
+        float: right;
+    }
+</style>
 
-            <div id="city_openstreetmap_canvas" class="olMap"></div>
-            <div class="climateTable_container">
-                <div class="col-12" id="climateTable"></div>
+
+    <!--Section Start-->
+
+    <section id="library-wrapper">
+        <img src="~/img/biblioteca.jpg" class="imgcomplete" />
+
+        <section>
+            <div id="" class="widthnormal paddingfoot textclass col-xs-8 col-xs-offset-2">
+                <ol class="breadcrumb">
+                    <li><a href="../Home/Index">Inicio</a></li>
+                    <li><a href="../Biblioteca/Index">Biblioteca</a></li>
+                    <li class="active">Registro Clim&aacute;tico (Centro Am&eacute;rica)</li>
+                </ol>
             </div>
-    </div>
+        </section>
 
-</div>
+        <section>
+            <div id="" class="widthnormal paddingfoot textclass col-xs-8 col-xs-offset-2">
+                <h2 class="titular" id="lblCategory">Registro Clim&aacute;tico (Centro Am&eacute;rica)</h2>
+                <h4 class="subtitulo" id="lblSection">Búsqueda de archivos</h4>
+            </div>
+        </section>
 
-<div class="col-xs-6">
-	<div class="climatological_area" id="climateTable_container">
-                    <div class="col-12" id="climateContainer"></div>                   
+            <hr />
+
+            <div class="container center-block">
+
+                <div class="col-xs-6">
+                    <p class="textpaises">País: </p>
+                    <select class="form-control" name="select1" id="select1">
+                        <option value=""></option>
+                    </select>
                 </div>
-</div>
-</div>
-</body>
-</html>
+
+                <div class="col-xs-6">
+                    <p class="textpaises">Cuidad: </p>
+                    <select class="form-control" name="select2" id="select2">
+                        <option value=""></option>
+                    </select>
+                </div>
+
+            </div>
+
+            <hr />
+            <hr />
+
+            <div id="panel" class="center-block container climatic-publication-content">
+
+                <div class="col-xs-12 col-sm-6 weather-image-column">
+                    <div class="card-container">
+                        <div class="card-image-wrapper">
+                            <div class="climatological_area" id="climatological_area_container">
+
+                                <div id="city_openstreetmap_canvas" class="olMap"></div>
+                                <div class="climateTable_container" id="climateTable_container">
+                                    <div class="col-12" id="climateTable"></div>
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-xs-12 col-sm-6 weather-image-column">
+                    <div class="card-container">
+                        <div class="card-image-wrapper">
+
+                            <div class="climatological_area" id="climateTable_container">
+                                <div class="col-12" id="climateContainer"></div>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </section>
+
+    <!--Section End-->
+
 <!-- jQuery -->
 <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script><!-- /Scripts/jquery.js -->
 
@@ -52,8 +101,3 @@
 <script src="\scripts\Biblioteca\Charts\HighCharts.js"></script>
 <script src="\Scripts\Biblioteca\Charts\ClimaticChartsComponent.js"></script>
 
-
-
-
-      
-</script>
