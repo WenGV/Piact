@@ -64,11 +64,11 @@ var DropDownModel =
         {
             'name': "El Salvador",
             'value': [
-                [1187, "Acajutla"],
-                [1186, "Santa Ana"],
-                [1189, "Nueva Concepcion"],
+                //[1187, "Acajutla"],
+                //[1186, "Santa Ana"],
+                //[1189, "Nueva Concepcion"],
                 [282, "San Salvador"],
-                [1188, "San Miguel"]
+                //[1188, "San Miguel"]
             ]
         }
         ,
@@ -682,8 +682,9 @@ function load_table(unit) {
     }
 
     if (!check_climate("minTemp" + unit) && !check_climate("maxTemp" + unit) && !check_climate("meanTemp" + unit) && !check_climate("raindays") && !check_climate("rainfall")) {
-        $('#climateTable').html('<div class="not_available">Climatology information currently not available.</div>');
+        $('#climateTable').html('<h2 class="not_available">Lo sentimos actualmente no tenemos datos para la región selecionada</h2>');
     } else {
+        $('#climateTable').html('<div></div>');
 
         $('#climateTable').each(function () {
             $('table', this).remove();
