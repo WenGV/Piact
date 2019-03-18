@@ -7,57 +7,20 @@
     var publication;
     var error = [];
 
-
     function setPanel(title, interpretation, source, idPublication, interpretarionIMG) {
         publication.source = source;
-        var imageTag = "";
-
-
-        //Video y windity
-        if (idPublication === 20) {
-            imageTag =
-          "<div class='divvideoclass' ><iframe   src='" + source + "' frameborder='0' allowfullscreen></iframe></div>" ;
-          /*"<iframe class='visible-lg-block center-block img-rounded' src='" + source + " 'width='600' height='400' frameborder='0'></iframe>";*/
-        }
-
-            //para Uadio
-        else if (idPublication === 19) {
-            imageTag = "<div class='audioSoundCloud' frameborder='0' allowfullscreen>" +source+"</div>";
-            //imageTag = "<div class='audioSoundCloud'>" +source+"</div>";
-        }
-
-
         var panel =
-           "<div class=''>" +
+            "<iframe class='embed-responsive - item' src='" + source + "' allowfullscreen='' data-gtm-yt-inspected-2340190_699='true' data-gtm-yt-inspected-2340190_908='true'>" +
+            "</iframe > "
 
-           "    <div class='panel-heading ' style='margin-top: 13px;'>" +
-           "        <h2 id='lblTitulo' style='font-size: 33px;' class='panel-title'>" + title + "</h2>" +
-           "   </div>" +
-           "    <div class='well'>" +
-                           imageTag +
-           "       <br />" +
-
-           "    <div class='panel-heading'>" +
-              "<div  id=" + "subPanel" + idPublication + " ></div>" +
-           "       <h3>Descripci&oacute;n</h3>" +
-           "       <p id='lblDescripcion' style='font-size:22px;'>" +
-           "           " + interpretation + "  " + interpretarionIMG +
-           "       </p>" +
-
-           "   </div>" +
-           "   </div>" +
-
-           "</div>" +
-           "<br>";
         //SET PANEL BY DEFAULT
         $("#panel").html(panel);
-
-
+    
     }
 
 
     $.getJSON("/Publisher/getInterviewsSection", function (data) {
-       // console.log(data);
+        // console.log(data);
         var items = "<option>Seleccione aqu&iacute;</option>";
         $.each(data, function (i, category) {
             items += "<option " + "value='" + category.ID + "'>" + category.Name + "</option>";
@@ -67,9 +30,22 @@
 
 
     $('#btEnviar').attr('disabled', 'disabled');
+    $('#txtTitulo').on("change", function () {
 
-    $("#btVisualize").on("click", function () {
-        if ($("#txtTitulo").val() !== "" && $("#podcastTXT").val() !== "" && $("#descriptionTXT").val() !== "") {
+        var text = $("#txtTitulo").val()
+        $("#lblTitulo").text(text);
+    });
+
+    $('#descriptionTXT').on("change", function () {
+
+        var text = $('#descriptionTXT').val();
+        $("#lblDescripcion").text(text);
+    });
+
+    $("#podcastTXT").on("change", function () {
+
+        //$("#txtTitulo").val() !== "" && && $("#descriptionTXT").val() !== ""
+        if ($("#podcastTXT").val() !== "") {
             var url = $("#podcastTXT").val();
             if (url !== "") {
                 var aorv = url.split("/");
@@ -95,36 +71,8 @@
                                     setPanel(publication.title, publication.interpretation, publication.source, publication.idPublication, "");
                                 }
                             } else {
-                                error.push("El video no tiene el formato adecuado, copia correctamente un link válido de youtube");
-                            }
-                        } else if (yos === "soundcloud.com" || yos === "www.soundcloud.com") {
-                            if (aorv_route !== "") {
-                                publication.idPublication = 19;
-
-                                var audio_route = aorv[aorv.length - 2] + "/" + aorv[aorv.length - 1];
-                                //console.log(audio_route);
-                                $('#btEnviar').removeAttr('disabled');
-                                var mySource = "https://" + yos + "/" + audio_route;
-                                //var mySource = $("#podcastTXT").val();
-                                //console.log(mySource);
-
-                                //INIT SOUND CLOUD API CONNECTION
-                                SC.initialize({
-                                    client_id: '250862962'
-                                });
-
-                                var track_url = mySource;
-                                //var track_url = $("#podcastTXT").val();
-                                SC.oEmbed(track_url, { auto_play: true }).then(function (oEmbed) {
-                                    //console.log('oEmbed response: ', oEmbed.html);
-                                    publication.source = $("#podcastTXT").val(); //mySource.slice(71, mySource.length).replace('"></iframe>', "");
-                                    if (publication.idPublication !== 0) {
-                                        setPanel(publication.title, publication.interpretation, oEmbed.html, publication.idPublication, "");
-                                    }
-                                });
-                                
-                            } else {
-                                error.push("El potcast no tiene el formato adecuado, copia correctamente un link válido de soundcloud");
+                                console.log("El video no tiene el formato adecuado, copia correctamente un link válido de youtube");
+                                //error.push("El video no tiene el formato adecuado, copia correctamente un link válido de youtube");
                             }
                         }
                     }
@@ -133,75 +81,6 @@
         }
     });
 
-    //visualize publication
-    /*$("#btVisualize").click(function () {
-
-       
-
-
-        publication = {
-            'title' : $("#txtTitulo").val(),
-            'idPublication': $("#Section > option:selected").attr("value"),
-            'source': '',
-            'interpretation': $("#descriptionTXT").val()
-        }
-        if ($("#podcastTXT").val() != "") {
-            var idPublication = $("#Section > option:selected").attr("value");
-            if (idPublication == 20) {
-                var potcastDATA = $("#podcastTXT").val();
-                //is video from youtube
-                if (potcastDATA.indexOf("https://www.youtube.com/watch?v=") != -1) {
-                    $('#btEnviar').removeAttr('disabled');
-                    publication.source = potcastDATA.replace("watch?v=", "embed/");
-                    setPanel(publication.title, publication.interpretation, publication.source, idPublication,"");
-
-                } else {
-                    error.push("El video no tiene el formato adecuado, copia correctamente un link válido de youtube");
-                }
-            }
-            else if (idPublication == 19) {
-   
-
-                var potcastDATA = $("#podcastTXT").val();
-                if (potcastDATA.indexOf("https://soundcloud.com/") != -1) {
-                    $('#btEnviar').removeAttr('disabled');
-                    var mySource = $("#podcastTXT").val();
-
-                    //INIT SOUND CLOUD API CONNECTION
-                    SC.initialize({
-                        client_id: '250862962'
-                    });
-
-                    var track_url = $("#podcastTXT").val();
-                    SC.oEmbed(track_url, { auto_play: true }).then(function (oEmbed) {
-                        console.log('oEmbed response: ', oEmbed);
-                        publication.source = $("#podcastTXT").val(); //mySource.slice(71, mySource.length).replace('"></iframe>', "");
-                        setPanel(publication.title, publication.interpretation, oEmbed.html, idPublication, "");
-                    });
-
-
-                   
-                }
-                else {
-                    error.push("El potcast no tiene el formato adecuado, copia correctamente un link válido de soundcloud");
-                }
-
-            }else{
-                error.push("No selecciono la opción ");
-            }
-        } else { error.push("No hay texto de podcasr");}
-
-        if (error.length != 0) {
-            var errorData;
-            for (var i = 0; i < error.length; i++) {
-                errorData += error[i] + "<br>";
-            }
-            alert(errorData);
-        }
-        console.log(publication);
-
-
-    });*/
 
     $("#txtTitulo").keyup(function () {
         var text = $(this).val();
@@ -220,17 +99,52 @@
 
     });
 
+    function validateString(a,b,c) {
+        return !(isEmptyOrSpaces(a) || isEmptyOrSpaces(b) || isEmptyOrSpaces(c));
+    }
+
+    function isEmptyOrSpaces(str) {
+        return str === null || str.match(/^ *$/) !== null;
+    }
+
     $("#btEnviar").click(function () {
 
         publication.title = $("#txtTitulo").val();
         publication.interpretation = $("#descriptionTXT").val();
-
         publication.source = encodeURI(publication.source);
-        console.log(publication);
-        $.post('/Publisher/setInterviewPublicationInfo/', publication, function (res) {
-            if (res === "true") alert("si")
-            else alert("error");
-        });  
+        if (validateString(publication.title, publication.interpretation, publication.source)) {
+            $.post('/Publisher/setInterviewPublicationInfo/', publication, function (res) {
+                var msg = "";
+                if (res === "true") {
+                    msg =
+                        "<div class='alert alert-success alert-dismissible'>" +
+                        "<a href='#' class='close' data-dismiss='alert' aria-label='close'>&times;</a>" +
+                        "<strong>Success!</strong> Nuevo Video publicado." +
+                        "</div>";
+                    $("#lblResponseMsg").html(msg);
+
+                }
+                else {
+                    msg =
+                        "<div class='alert alert-danger alert-dismissible'>" +
+                        "<a href='#' class='close' data-dismiss='alert' aria-label='close'>&times;</a>" +
+                        "<strong>Error!</strong> Disculpa, hubo un error al tratar de publicar por favor intenta nuevamente." +
+                        "</div>";
+                    $("#lblResponseMsg").html(msg);
+                }
+            });
+        }
+        else {
+            msg =
+                "<div class='alert alert-danger alert-dismissible'>" +
+                "<a href='#' class='close' data-dismiss='alert' aria-label='close'>&times;</a>" +
+                "<strong>Campos vacíos!</strong> Disculpa, completa todos los campos para continuar." +
+                "</div>";
+            $("#lblResponseMsg").html(msg);
+
+        }
+        $("html, body").stop().animate({ scrollTop: 0 }, 500, 'swing', function () { });
+
     });
 
 });

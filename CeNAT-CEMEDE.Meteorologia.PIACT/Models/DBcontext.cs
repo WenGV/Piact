@@ -911,7 +911,7 @@ namespace CeNAT_CEMEDE.Meteorologia.PIACT.Models
                     pub.nodeIndex = 0;
                     pub.tagType = "";
                     cmd.Parameters.AddWithValue("@Scrap", pub.Scrap);
-                    cmd.Parameters.AddWithValue("OriginalURL", pub.OriginalURL);
+                    cmd.Parameters.AddWithValue("OriginalURL", pub.source);
                     cmd.Parameters.AddWithValue("@nodeIndex", pub.nodeIndex);
                     cmd.Parameters.AddWithValue("@tagType", pub.tagType);
 
