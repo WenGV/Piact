@@ -1,11 +1,12 @@
 $(function () {
 
     var section = {
-        'Name': $("#lblSection").attr("value")
+        'Name': $("#lblSection").attr("value"),
+        'pageNum': $("#pageNum").val()
     }
 
     var eventPosition = $(window).innerHeight();//("#panel").height();// This is the height position you want the event to fire on. 70%
-
+    var lengthVideo = 0;//video count
     var elem = $("#panel");
     var maxScrollTop = elem[0].scrollHeight - elem.outerHeight();
     console.log(maxScrollTop);
@@ -44,9 +45,14 @@ $(function () {
                     $("#lblSection").html(interpretation);
                 }
                 else if (section_id === 20) {//idPublication === 5 || section.Name === 20
-                    imageTag =
-                        "<iframe  class='visible-xs img-responsive img-thumbnail img-rounded crop videoestilo'   src='" + source + "' frameborder='0'></iframe>" +
-                        "<iframe  class='visible-lg-block center-block img-rounded videoestilo' src='" + source + "' frameborder='0'></iframe>";
+                    imageTag = "";
+                    var idVideo = source.match(/youtube\.com.*(\?v=|\/embed\/)(.{11})/).pop();
+                    if (idVideo.length == 11) {
+                        var video_img = '<img src="//img.youtube.com/vi/' + idVideo + '/0.jpg" class ="img-responsive img-thumbnail img-rounded crop videoestilo" title = "' + source + '" onClick="showVideo(this);" >';
+                        imageTag = video_img;
+                    }
+                        //"<iframe  class='visible-xs img-responsive img-thumbnail img-rounded crop videoestilo'   src='" + source + "' frameborder='0'></iframe>" +
+                        //"<iframe  class='visible-lg-block center-block img-rounded videoestilo' src='" + source + "' frameborder='0'></iframe>";
                     interpretacionTagName = "Descripci&oacute;n";
                     //para Audio
                 } else if (section_id === 19) {
@@ -245,7 +251,7 @@ for(var i = 0; i < l; i++){(listSrc[i]=listSrc[i].replace("set","sep")); (listSr
                         //If the publication is the first one or the first one in the row.
                         if (counter == 1 || row_counter == 3) { panel += "<div class='row'>"; }
                         //Prints the publication within its responsive div
-                        panel += "<div class='col-xs-12 col-sm-6 col-md-4 weather-image-column'>" + imageTag + "</div>";
+                        panel += "<div class='col-xs-12 col-sm-6 col-md-4 weather-image-column vid'>" + imageTag + "<h5 class='modal-title' id='myModalLabel'>" + title + "</h5>" + "</div>";
                         //Close row failsafe, in case the number of publications isn't divisible by three
                         if (publications_amount == counter) { panel += "</div>"; }
                         //If row_counter is equal to three, reset its value back to zero, if not add 1 to it.
@@ -257,7 +263,7 @@ for(var i = 0; i < l; i++){(listSrc[i]=listSrc[i].replace("set","sep")); (listSr
                         //Add 1 to row_counter.
                         row_counter++;
                         //Prints the publication within its responsive div
-                        panel += "<div class='col-xs-12 col-sm-6 col-md-4 weather-image-column'>" + imageTag + "</div></div>";
+                        panel += "<div class='col-xs-12 col-sm-6 col-md-4 weather-image-column vid'>" + imageTag + "<h5 class='modal-title' id='myModalLabel'>" + title + "</h5>" + "</div></div>";
                     }
                     return panel;
                 }
@@ -277,14 +283,16 @@ for(var i = 0; i < l; i++){(listSrc[i]=listSrc[i].replace("set","sep")); (listSr
             var publication_panel, publications_amount = data.length, counter = 1, publications = "", interpretarionIMG = "";
             try {
                 $.each(data, function (i, publication) {
+                    lengthVideo = data.length;
                     interpretarionIMG = "";
                     if (publication.img !== "") {
                         interpretarionIMG = "<img  src='data:image/jpeg;base64," + publication.img + "'>";
                     }
                     publication_panel = setSimplePanel(publication.title, publication.interpretation, publication.source, publication.idPublication, interpretarionIMG, publication.State, publications_amount, counter, publication.img, publication.idDisplayMode);
-                    if (publication_panel == undefined) { row_counter = row_counter--; } else { counter++; publications += publication_panel; }                    
+                    if (publication_panel == undefined) { row_counter = row_counter--; } else { counter++; publications += publication_panel; }                 
                 });
                 $("#panel").append(publications);
+                if (section.Name == 20) { pag(lengthVideo); }
             }
             catch (e) {
                 eventPosition = 0;
