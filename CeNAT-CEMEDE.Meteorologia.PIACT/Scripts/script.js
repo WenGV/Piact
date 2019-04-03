@@ -12,6 +12,8 @@ function init_fullscreen_slider_responsive_img() {
 function isEmpty(el) {
     return !$.trim(el.html())
 }
+
+
 if ($("#content-manager-container").length) {
     $(".admin #page-content-wrapper .hamburger").on("click", function () {
         if ($(".admin .overlay").css("display") == "block") {
@@ -21,6 +23,8 @@ if ($("#content-manager-container").length) {
         }
     });
 }
+
+
 $(window).on('load', function () {
     console.log($(".climatic-publication-images").length);
     if ($("body").hasClass("home")) {
@@ -43,6 +47,8 @@ $(window).on('load', function () {
         alert('page is loaded and 1 minute has passed');
     }, 3000);*/ 
 });
+
+
 $("#visualizePanel").on("click", "#admin-imgorvid-radios-wrapper .group-image input",function () {
     if ($("#admin-imgorvid-field-wrapper .group-video").css("display") == "block") {
         $("#admin-imgorvid-field-wrapper .group-video").slideUp();
@@ -55,6 +61,7 @@ $("#visualizePanel").on("click", "#admin-imgorvid-radios-wrapper .group-video in
     }
     $("#admin-imgorvid-field-wrapper .group-video").slideDown();
 });
+
 $(document).ready(function () {
     if ($(".users-view").length) {
         var users_role = $(".user-view-role");
@@ -73,6 +80,8 @@ $(document).ready(function () {
             }
         }
     }
+
+
     $("#panel").on("mouseenter", ".card-container", function () {
         var header_container = $(this).children()[0];
         var img_container = $(this).children().next()[0];
@@ -91,7 +100,9 @@ $(document).ready(function () {
         if (mq_col_xs.matches) {
             if ($(this).parent().hasClass("open")) {
                 $(this).next().css("display", "block");
-            } else {
+            }
+            else
+            {
                 $(this).next().css("display", "none");
             }
         }
@@ -127,7 +138,8 @@ $(document).ready(function () {
         footer.css({ height: footer_height });
         $("body").css("margin-bottom", footer_height);
     }
-    //If the page loaded is the homepage
+    //If the page loaded is the homepage.
+
     if($("body").hasClass("home")) {
         $("#piact-offers-container .row").slick({
             arrows: true,
@@ -169,4 +181,7 @@ $(document).ready(function () {
             ]
         });
     }
+
+
 });
+
