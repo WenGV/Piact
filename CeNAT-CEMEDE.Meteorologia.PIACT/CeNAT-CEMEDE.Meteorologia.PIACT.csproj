@@ -342,6 +342,7 @@
     <Content Include="Scripts\ClimaticPublication\climaticPubLoad.js" />
     <Content Include="Scripts\ClimaticPublication\FilesPub.js" />
     <Content Include="Scripts\ClimaticPublication\IndexClimaticPub.js" />
+    <Content Include="Scripts\ClimaticPublication\InterviewsVideo.js" />
     <Content Include="Scripts\ClimaticPublication\temperature6monthPub84.js" />
     <Content Include="Scripts\external\google-code-prettify\prettify.js" />
     <Content Include="Scripts\external\jquery.hotkeys.js" />
