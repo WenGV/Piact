@@ -1,0 +1,51 @@
+﻿
+@{
+    ViewBag.Title = "";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<style>
+    .vid {
+        cursor: pointer;
+    }
+</style>
+<section class="audio-video-interviews">
+    <img src="~/img/video.jpg" class="imgcomplete" />
+    <div id="" class="widthnormal paddingfoot textclass col-xs-8 col-xs-offset-2">
+        <h2 class="titular" id="lblCategory" value="4">Entrevistas en Video</h2>
+        <h4 class="subtitulo" id="lblSection" value="20">Entrevistas</h4>
+        <input hidden id="pageNum" name="pageNum" value="1" />
+    </div>
+</section>
+
+<div id="panelIframe" style="display:none;" class="img-circle center-block panel-default paddingssmall textclass col-xs-12 col-sm-6 col-sm-offset-2">
+    <iframe id="fr" class="img-responsive img-thumbnail img-rounded crop videoestiloB" src="//www.youtube.com/embed/CiBgnLocoRo" allowfullscreen allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"></iframe>
+</div>
+
+<hr />
+
+<div id="panel" class="center-block panel-default paddingssmall textclass col-xs-12 col-sm-8 col-sm-offset-2 climatic-publication-content">
+
+</div>
+
+<div class="center-block col-lg-7 weather-image-column">
+    <nav aria-label=...>
+        <ul class="pagination pagination-lg">
+            <li id="previous-page"><a class="page-link" href="javascript:void(0)" aria-label=Previous><span aria-hidden=true>Anterior</span></a></li>
+        </ul>
+    </nav>
+</div>
+
+
+<script src="~/Scripts/ClimaticPublication/InterviewsVideo.js"></script>
+<script src="/Scripts/ClimaticPublication/climaticPubLoad.js"></script>
+<!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-116689455-1"></script>
+
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'UA-116689455-1');
+
+</script>

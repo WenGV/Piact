@@ -1000,6 +1000,49 @@ namespace CeNAT_CEMEDE.Meteorologia.PIACT.Models
         }
 
 
+
+
+        //-- Parameters: idCategory, Title, Source, Interpretation, pubDate,
+        public static String setVideoPublication(ClimaticPublication pub)
+        {
+            Connection();
+            try
+            {
+                using (SqlCommand cmd = new SqlCommand("setVideoPublication", _con))
+                {
+                    cmd.CommandType = CommandType.StoredProcedure;
+                    cmd.Parameters.AddWithValue("@title", pub.title);
+                    cmd.Parameters.AddWithValue("@description", pub.interpretation);
+                    cmd.Parameters.AddWithValue("@videoSource", pub.source);
+                    // cmd.Parameters.AddWithValue("@state", 1);//stade on, by default
+                    //EMAIL  just for test
+                    cmd.Parameters.AddWithValue("@email", "ND");//current user, must be fixedd!
+
+                    _con.Open();
+
+                    SqlDataReader reader = cmd.ExecuteReader();
+                    reader.Read();
+
+                    int res = Convert.ToInt32(reader["res"]);
+                    if (res >= 1) return "true";
+                    else return "false";
+                }
+            }
+            catch (Exception ex)
+            {
+
+                return ex.ToString();//"Error al conectar con la base de datos";//
+            }
+            finally
+            {
+                if (_con.State == ConnectionState.Open)
+                {
+                    _con.Close();
+                }
+            }
+        }
+
+
         /*ERROR LOG*/
         public static String setPiactProblem(String problem, String location, String userName, String site, String version)
         {

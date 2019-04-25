@@ -169,7 +169,7 @@ namespace CeNAT_CEMEDE.Meteorologia.PIACT.Controllers
                     TrackLog(location, "Update publication id: "+publication.idPublication);
 
                     //THE NEXT RULE JUST ALLOW  INTERVIEWS AND BIBLIOTECA TO UPLOAD CONTENT
-                    if (publication.idPublication == 32)
+                    if (publication.idSection == 32)
                     {
                         String res = "";
                         //Upload file for Biblioteca
@@ -199,10 +199,10 @@ namespace CeNAT_CEMEDE.Meteorologia.PIACT.Controllers
                                         return Json(res, JsonRequestBehavior.AllowGet);
                                     }
                                 }
-                                else
+                                else if(publication.idDisplayMode == 3)
                                 {
                                     //UPDATE 
-                                    res = ClimaticPublication.setPublicationInfo(publication).ToString();
+                                    res = ClimaticPublication.setVideoPublication(publication).ToString();
                                     return Json(res, JsonRequestBehavior.AllowGet);
                                 }
 
@@ -227,11 +227,13 @@ namespace CeNAT_CEMEDE.Meteorologia.PIACT.Controllers
 
                         }
                     }
-                    else if(publication.idPublication == 19 || publication.idPublication == 20){
+                    else if(publication.idSection == 19 || publication.idSection == 20){
                         //get the source attribute
                         String res = ClimaticPublication.setInterviewPublicationInfo(publication);
                         return Json(res, JsonRequestBehavior.AllowGet);
-                    }
+                    }   
+
+
                     return null;
                 }
                 catch (Exception ex)
@@ -304,7 +306,7 @@ namespace CeNAT_CEMEDE.Meteorologia.PIACT.Controllers
 
         /*INTERVIEWS*/
 
-        public ActionResult CreateInterview()
+        public ActionResult CreateVideo()
         {
 
             int perfil = Convert.ToInt32(Session["perfil"]);
@@ -325,6 +327,28 @@ namespace CeNAT_CEMEDE.Meteorologia.PIACT.Controllers
             }
 
         }
+
+        public ActionResult UpdateVideo()
+        {
+            int perfil = Convert.ToInt32(Session["perfil"]);
+            if (Session["email"] != null)
+            {
+                if (perfil == 1 || perfil == 2)
+                {
+                    return View();
+                }
+                else
+                {
+                    return RedirectToAction("Index", "Home");
+                }
+            }
+            else
+            {
+                return RedirectToAction("Index", "Login");
+            }
+        }
+
+
 
         //get the list of Interviews Sections
         public JsonResult getInterviewsSection()

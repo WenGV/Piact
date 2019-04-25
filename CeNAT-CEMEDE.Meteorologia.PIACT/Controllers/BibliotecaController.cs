@@ -17,7 +17,10 @@ namespace CeNAT_CEMEDE.Meteorologia.PIACT.Controllers
         {
             return View();
         }
-
+        public ActionResult Videos()
+        {
+            return View();
+        }
 
         public ActionResult ClimaticCharts()
         {
@@ -120,10 +123,7 @@ namespace CeNAT_CEMEDE.Meteorologia.PIACT.Controllers
         }
  
 
-        public ActionResult Admin()
-        {
-            return View();
-        }
+        
         // POST: Subir archivo
         [HttpPost]
         public ActionResult Index(FormCollection file)

@@ -656,7 +656,7 @@
 
     //Updaload Files
     function uploadFilePub(publication) {
-        publication.idPublication = 32;
+        publication.idSection = 32;
         $.post('/Publisher/setInterviewPublicationInfo/', publication, function (response) {
             if (response == true) {
                 var html = "La publicación se actualizo satisfactoriamente";

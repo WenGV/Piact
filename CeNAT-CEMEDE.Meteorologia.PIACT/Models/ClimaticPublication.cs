@@ -24,6 +24,8 @@ namespace CeNAT_CEMEDE.Meteorologia.PIACT.Models
         public int pos { get; set; }
         public int Total { get; set; }
 
+        public int idSection { get; set; }
+
         public String tagType { get; set; }
         public String authorEmail { get; set; }
         public String source{get;set;}
@@ -83,5 +85,10 @@ namespace CeNAT_CEMEDE.Meteorologia.PIACT.Models
             return DBcontext.setInterviewPublicationInfo(pub);
         }
 
+        public static String setVideoPublication(ClimaticPublication pub)
+        {
+            return DBcontext.setVideoPublication(pub);
+        }
+        
     }
 }

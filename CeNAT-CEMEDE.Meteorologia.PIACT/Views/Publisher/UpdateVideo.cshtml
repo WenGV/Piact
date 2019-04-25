@@ -1,0 +1,94 @@
+﻿
+@{
+    ViewBag.Title = "UpdateInterview";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<link href="http://netdna.bootstrapcdn.com/font-awesome/3.0.2/css/font-awesome.css" rel="stylesheet">
+<div class="container">
+    <div>
+        <h2>Administraci&oacute;n de video</h2>
+
+        <!-- <button type="button" class="btn btn-raised btn-primary" id="btVisualize" name="btVisualize">Visualizar!</button> -->
+        <!-- <button type="button" class="btn btn-raised btn-primary" id="btLimpiar" name="btVisualize">Limpiar</button> -->
+
+        <br />
+        <div id="lblResponseMsg"></div>
+        <section id="responsive">
+
+            <!--Title-->
+            <h2 class="section-heading mb-4"></h2>
+            <h2>URL</h2>
+            <form role="form">
+                <div class="form-group">
+                    <label for="comment">Enlace del video:</label>
+                    <input id="podcastTXT" class="form-control" rows="5" />
+                </div>
+            </form>
+
+
+            <!--Section: Live preview-->
+            <section class="p-1">
+
+                <div id="panel" class="embed-responsive embed-responsive-16by9">
+
+                    <iframe class='embed-responsive - item' src="https://www.youtube.com/embed/OiC_5NJjzCo&t=2s" allowfullscreen='' data-gtm-yt-inspected-2340190_699='true' data-gtm-yt-inspected-2340190_908='true'></iframe>
+                </div>
+
+            </section>
+        </section>
+
+
+        <h2 id="lblTitulo">Titulo</h2>
+        <h3 id="lblDescripcion">Descripci&oacute;n</h3>
+
+        <hr>
+        <p>Ingresa un nombre para el video:</p>
+        <form role="form">
+            <div class="form-group">
+                <label class="control-label" for="addon3a">T&iacute;tulo</label>
+                <input type="text" id="txtTitulo" class="form-control">
+            </div>
+        </form>
+
+        <p>Descripci&oacute;n sobre el video:</p>
+        <form role="form">
+            <div class="form-group">
+                <label for="comment">Texto:</label>
+                <input id="descriptionTXT" class="form-control" rows="5" />
+            </div>
+        </form>
+
+        <hr />
+        <div class="form-group">
+            <label for="comment">Click para publicar en la p&aacute;gina:</label>
+            <br>
+            <button type="button" class="btn btn-raised btn-success" id="btEnviar" data-toggle="modal" data-target=".bs-example-modal-lg" name="btVisualize">Publicar cambios!</button>
+        </div>
+
+
+        <div class="form-group">
+            <label for="comment">Click para publicar en la p&aacute;gina:</label>
+            <br>
+            <button type="button" class="btn btn-raised btn-danger" id="btEliminar" data-toggle="modal" data-target=".bs-example-modal-lg" name="btVisualize">Eliminar Video!</button>
+        </div>
+
+
+
+    </div>
+
+</div>
+<script src="/Scripts/Publisher/UpdateVideo.js"></script>
+<script src="https://connect.soundcloud.com/sdk/sdk-3.1.2.js"></script>
+
+<!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-116689455-1"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'UA-116689455-1');
+</script>
+
+

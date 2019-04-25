@@ -135,6 +135,11 @@
                 $("#mediumPubIMG4").html(source);
             }
             //Slider
-        
+
+
+
+
+    
+
     };
 });
