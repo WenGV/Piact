@@ -149,13 +149,18 @@ function googleTranslateElementInit() {
     if(actualLang=="es" && langToTranslate=="en"){
         $("#textLang")[0].innerHTML = "ES";
         $("#aLang")[0].title = "Spanish";
-       doTranslate(actualLang, langToTranslate);
+        doTranslate(actualLang, langToTranslate);
+
+        $("html").removeAttr('style');
+        $("body").removeAttr('style');
+        $("body").attr({"style" : "margin-bottom: 391px;"});
+
     }  
     else if(actualLang=="en" && langToTranslate=="es"){     
         $("#textLang")[0].innerHTML = "EN";
-        $("#aLang")[0].title = "English";
-    }
-    
+        $("#aLang")[0].title = "English";               
+        
+    }    
     
 }
 
@@ -215,7 +220,22 @@ function doTranslate(actualLang, langToTranslate){
     display:none !important
     } */
 
+    footer {
+        /*position:relative;*/
+    }
 
+
+    .goog-te-spinner-pos + div {
+        height: auto !important;
+    }
+
+.goog-logo-link {
+    display:none !important;
+} 
+
+.goog-te-gadget{
+    color: transparent !important;
+}
 
 .goog-te-gadget-icon {display:none;}
 .goog-te-gadget-simple a {text-decoration: none !important;}
