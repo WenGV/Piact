@@ -277,7 +277,7 @@ namespace CeNAT_CEMEDE.Meteorologia.PIACT.Controllers
         {
             try
             {
-                /*var response = Request["g-recaptcha-response"];
+                var response = Request["g-recaptcha-response"];
                 string secretKey = "6Ldd7BsUAAAAAPV5qQigjCeqN53JJVn0vpsu1Sc1";
                 var client = new WebClient();
                 var result = client.DownloadString(string.Format("https://www.google.com/recaptcha/api/siteverify?secret={0}&response={1}", secretKey, response));
@@ -288,7 +288,7 @@ namespace CeNAT_CEMEDE.Meteorologia.PIACT.Controllers
                     ViewBag.Message = "Por favor, verifica que no eres un robot.";
                 }
                 else
-                {*/
+                {
                 String Action = "";
                 if (ModelState.IsValid || user.email != null)
                     {
@@ -317,21 +317,21 @@ namespace CeNAT_CEMEDE.Meteorologia.PIACT.Controllers
                         }
                         else if (perfil == 0)
                         {
-                            Action = "Lo sentimos, el email de usuario es incorrecto";
+                            Action = "Lo sentimos, loa datos de usuario son incorrectos";
                             String location = "Class: " + System.Reflection.MethodBase.GetCurrentMethod().DeclaringType.Name;
                             location += "-Method: " + System.Reflection.MethodBase.GetCurrentMethod().Name;
                             TrackLog(location, Action);
-                            ViewBag.Message = "Lo sentimos, el email de usuario es incorrecto";
+                            ViewBag.Message = "Lo sentimos, loa datos de usuario son incorrectos";
                         }
                         else if (perfil == -1) {
                             Action = "Lo sentimos, su contraseña es incorrecto";
                             String location = "Class: " + System.Reflection.MethodBase.GetCurrentMethod().DeclaringType.Name;
                             location += "-Method: " + System.Reflection.MethodBase.GetCurrentMethod().Name;
                             TrackLog(location, Action);
-                            ViewBag.Message = "Lo sentimos, su contraseña es incorrecto";
+                            ViewBag.Message = "Lo sentimos, loa datos de usuario son incorrectos";
                         }
                     }
-                /*}*/
+                }
 
                 return View();
             }

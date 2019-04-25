@@ -48,7 +48,7 @@ $(function () {
                     imageTag = "";
                     var idVideo = source.match(/youtube\.com.*(\?v=|\/embed\/)(.{11})/).pop();
                     if (idVideo.length == 11) {
-                        var video_img = '<img src="//img.youtube.com/vi/' + idVideo + '/0.jpg" class ="img-responsive img-thumbnail img-rounded crop videoestilo" title = "' + source + '" onClick="showVideo(this);" >';
+                        var video_img = '<img id="' + idPublication+'" src="//img.youtube.com/vi/' + idVideo + '/0.jpg" class ="img-responsive img-thumbnail img-rounded crop videoestilo" title = "' + source + '" onClick="showVideo(this);" >';
                         imageTag = video_img;
                     }
                         //"<iframe  class='visible-xs img-responsive img-thumbnail img-rounded crop videoestilo'   src='" + source + "' frameborder='0'></iframe>" +

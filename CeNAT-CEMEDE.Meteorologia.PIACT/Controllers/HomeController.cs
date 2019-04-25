@@ -215,10 +215,7 @@ namespace CeNAT_CEMEDE.Meteorologia.PIACT.Controllers
         {
             return View();
         }
-        public ActionResult InterviewsVideo()
-        {
-            return View();
-        }
+     
 
         public ActionResult Library()
         {

@@ -1,21 +1,34 @@
 ﻿$(function () {
 
 
+    var selectedPublication = localStorage.getItem('selectedVideo');
 
+    if (selectedPublication != null) {
+        selectedPublication = JSON.parse(selectedPublication);
+        //localStorage.removeItem('selectedVideo');
+
+        $("#txtTitulo").val(selectedPublication.title);
+        $("#descriptionTXT").val(selectedPublication.interpretation);
+
+        $("#podcastTXT").val(selectedPublication.source);
+
+    } else {
+        window.location.pathname = "/Biblioteca/Videos";
+    }
     //on load, set the Category and Section's select tag
     //Var local
     var publication;
     var error = [];
 
-    function setPanel(title, interpretation, source, idPublication, interpretarionIMG) {
+    function setPanel(source) {
         publication.source = source;
         var panel =
             "<iframe class='embed-responsive - item' src='" + source + "' allowfullscreen='' data-gtm-yt-inspected-2340190_699='true' data-gtm-yt-inspected-2340190_908='true'>" +
-            "</iframe > "
+            "</iframe > ";
 
         //SET PANEL BY DEFAULT
         $("#panel").html(panel);
-    
+
     }
 
 
@@ -58,7 +71,7 @@
                         //console.log(aorv[i]);
                         publication = {
                             'title': $("#txtTitulo").val(),
-                            'idSection': 32,
+                            'idSection': 20,
                             'source': '',
                             'interpretation': $("#descriptionTXT").val()
                         }
@@ -67,12 +80,12 @@
 
                                 var video_embed = (aorv_route.includes('watch?v='))
                                     ? aorv_route.replace("watch?v=", "embed/")
-                                    : "embed/" + aorv_route;
+                                    : "embed/"+aorv_route;
 
                                 $('#btEnviar').removeAttr('disabled');
                                 publication.source = "https://" + yos + "/" + video_embed;
                                 if (publication.idPublication !== 0) {
-                                    setPanel(publication.title, publication.interpretation, publication.source, publication.idPublication, "");
+                                    setPanel(publication.source);
                                 }
                             } else {
                                 console.log("El video no tiene el formato adecuado, copia correctamente un link válido de youtube");
@@ -103,7 +116,7 @@
 
     });
 
-    function validateString(a,b,c) {
+    function validateString(a, b, c) {
         return !(isEmptyOrSpaces(a) || isEmptyOrSpaces(b) || isEmptyOrSpaces(c));
     }
 
@@ -111,24 +124,39 @@
         return str === null || str.match(/^ *$/) !== null;
     }
 
-    $("#btEnviar").click(function () {
+    $("#btEliminar").click(
+        function() {
+            submit(0);
+        }
+    );
+
+    
+
+    $("#btEnviar").click(
+        function() {
+            submit(1);
+        }
+    );
+
+    function submit(state) {
 
         publication.title = $("#txtTitulo").val();
         publication.interpretation = $("#descriptionTXT").val();
         publication.source = encodeURI(publication.source);
-        publication.idSection = 32;
         publication.idDisplayMode = 3;
-        publication.img = " ";
+        publication.State = state;
+        publication.idPublication = encodeURI(selectedPublication.idPublication);
         if (validateString(publication.title, publication.interpretation, publication.source)) {
-            $.post('/Publisher/setInterviewPublicationInfo/', publication, function (res) {
+            $.post('/Publisher/setPublicationInfo/', publication, function (res) {
                 var msg = "";
-                if (res === "true") {
+                if (res.toString() === "true") {
                     msg =
                         "<div class='alert alert-success alert-dismissible'>" +
                         "<a href='#' class='close' data-dismiss='alert' aria-label='close'>&times;</a>" +
                         "<strong>Success!</strong> Nuevo Video publicado." +
                         "</div>";
                     $("#lblResponseMsg").html(msg);
+                    localStorage.removeItem('selectedVideo');
 
                 }
                 else {
@@ -152,12 +180,9 @@
         }
         $("html, body").stop().animate({ scrollTop: 0 }, 500, 'swing', function () { });
 
-    });
+    }
 
+    $("#podcastTXT").change();
 
-
-
-   
-
-
+    
 });

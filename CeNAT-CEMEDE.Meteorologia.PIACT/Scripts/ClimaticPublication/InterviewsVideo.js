@@ -103,6 +103,13 @@ function showVideo(object) {
     src = src.split("?show")[0];
     $('#fr').attr('src', src + '?autoplay=1');
     $("#panelIframe").fadeIn("slow");
+
+
+    var id = parseInt(object.id);
+    var result = $.grep(climaticPub, function (element, index) {
+        return (element.idPublication === id);
+    });
+    localStorage.setItem('selectedVideo', JSON.stringify(result[0]));
     //$(".ytp-button").trigger("click");
 }
 
@@ -131,6 +138,7 @@ function hidePaginationItem(index, totalPages)
             {
                 $(".pagination").find(".paginationjs").addClass('hide');
             }
+
         }
     }
 } 
