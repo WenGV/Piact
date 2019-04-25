@@ -11,6 +11,7 @@ namespace CeNAT_CEMEDE.Meteorologia.PIACT.Models
         public String Name { get; set; }
         public int CategoryID { get; set; }
         public String pageNum { get; set; }
+        public String RowpPage { get; set; }
 
 
         public static IQueryable<Sections> getSectionsData()

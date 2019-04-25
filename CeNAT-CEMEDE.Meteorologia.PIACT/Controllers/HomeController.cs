@@ -1,4 +1,5 @@
 ﻿using CeNAT_CEMEDE.Meteorologia.PIACT.Models;
+using CeNAT_CEMEDE.Meteorologia.PIACT.Services;
 using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
@@ -12,6 +13,15 @@ namespace CeNAT_CEMEDE.Meteorologia.PIACT.Controllers
 {
     public class HomeController : Controller
     {
+        //private IMediaPublicationRepository _mediaRepository;
+
+        //public HomeController(IMediaPublicationRepository mediaRepository)
+        //{
+        //    _mediaRepository = mediaRepository;
+        //}
+
+        private MediaPublicationRepository _mediaRepository = new MediaPublicationRepository();
+
         //
         // GET: /Home/ Last update
         public ActionResult Index()
@@ -281,7 +291,75 @@ namespace CeNAT_CEMEDE.Meteorologia.PIACT.Controllers
                         Publication_List = (List<ClimaticPublication>)Session["Publication_List"];
                     }
 
-                    if (Publication_List is null) return null;
+                    if (Publication_List == null) return null;
+                    //NULL EXCEPTION TODO
+                    foreach (ClimaticPublication pub in Publication_List)
+                    {
+                        //IF SCRAP IS 0  =  not apply getScrapData
+                        if (pub.Scrap == 1)
+                        {
+                            String href = getScrapData(pub);
+                            if (href.Length <= 1)
+                            {
+                                //This below, should prevent the bad requested Publications to be displayed   
+                                pub.State = 0;
+
+                            }
+                            else
+                            {
+
+                                if (pub.OriginalURL.Length == 0 && href.Length < 600)
+                                {
+                                    pub.source += href;
+                                }
+                                else if (href.Length >= 90)
+                                {
+                                    pub.source = href;
+                                }
+                                else
+                                {
+                                    //Original ID has the reference value
+                                    pub.source = pub.OriginalURL += href;
+                                }
+                            }
+
+                        }
+
+                    }
+
+                    return Json(Publication_List, JsonRequestBehavior.AllowGet);
+                }
+            }
+            catch (Exception ex)
+            {
+                if (ex.Message.Contains("network-related"))
+                {
+                    //send user some alert about the network related problem
+                }
+                else
+                {
+                    //Log error
+                    DBcontext.setPiactProblem(ex.Message, ex.StackTrace, "NA", userIpAddress, "BETA");
+                }
+            }
+            return null;
+        }
+
+        [HttpGet]
+        public JsonResult getPubBySectionPaged(Sections section)
+        {
+            string userIpAddress = this.Request.UserHostAddress;
+
+            try
+            {
+                if (HttpContext.Request.IsAjaxRequest())
+                {
+                    List<ClimaticPublication> Publication_List = new List<ClimaticPublication>();
+
+                    Session["Publication_List"] = _mediaRepository.getPublicationBySection(section);
+                    Publication_List = (List<ClimaticPublication>)Session["Publication_List"];
+
+                    if (Publication_List == null) return null;
                     //NULL EXCEPTION TODO
                     foreach (ClimaticPublication pub in Publication_List)
                     {

@@ -531,6 +531,64 @@ namespace CeNAT_CEMEDE.Meteorologia.PIACT.Models
             }
         }
 
+        public static List<ClimaticPublication> getPublicationBySection(int idSection, int pageNumber, int rowspPage)
+        {
+            Connection();
+            try
+            {
+                using (SqlCommand cmd = new SqlCommand("sp_getPublicationBySection_paginate", _con))
+                {
+                    cmd.CommandType = CommandType.StoredProcedure;
+                    cmd.Parameters.AddWithValue("@idSection", idSection);
+                    cmd.Parameters.AddWithValue("@PageNumber", pageNumber);
+                    cmd.Parameters.AddWithValue("@RowspPage", rowspPage);
+                    _con.Open();
+                    SqlDataReader reader = cmd.ExecuteReader();
+                    List<ClimaticPublication> list = new List<ClimaticPublication>();
+                    ClimaticPublication item;
+                    while (reader.Read())
+                    {
+                        item = new ClimaticPublication();
+                        item.title = Convert.ToString(reader["title"]);
+                        item.source = Convert.ToString(reader["source"]);
+                        item.State = Convert.ToByte(reader["pubState"]);
+                        item.Scrap = Convert.ToByte(reader["Scrap"]);
+                        item.OriginalURL = Convert.ToString(reader["OriginalURL"]);
+                        item.interpretation = reader["interpretation"].ToString();
+                        item.img = reader["imageData"].ToString().Replace("\"", "");
+                        item.idPublication = Convert.ToInt32(reader["idPub"]);
+                        item.idDisplayMode = Convert.ToInt32(reader["idDisplayMode"]);
+                        item.Total = Convert.ToInt32(reader["Total"]);
+
+
+                        //IF ScrapSettings has values
+                        if (item.Scrap == 1)
+                        {
+                            int nodeIndex;
+                            Int32.TryParse(reader["nodeIndex"].ToString(), out nodeIndex);
+                            item.nodeIndex = nodeIndex;
+                            item.tagType = Convert.ToString(reader["tagType"]);
+                        }
+
+                        list.Add(item);
+                    }
+
+                    return list;
+                }
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+            finally
+            {
+                if (_con.State == ConnectionState.Open)
+                {
+                    _con.Close();
+                }
+            }
+        }
+
 
         /*LOGIN - Wenfri Grijalba*/
         //Agregar Userss

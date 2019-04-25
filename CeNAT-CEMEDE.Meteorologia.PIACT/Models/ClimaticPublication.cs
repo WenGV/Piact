@@ -22,6 +22,7 @@ namespace CeNAT_CEMEDE.Meteorologia.PIACT.Models
         public String OriginalURL { get; set; }
         public int nodeIndex { get; set; }
         public int pos { get; set; }
+        public int Total { get; set; }
 
         public String tagType { get; set; }
         public String authorEmail { get; set; }
@@ -49,6 +50,17 @@ namespace CeNAT_CEMEDE.Meteorologia.PIACT.Models
             try
             {
                 return DBcontext.getPublicationBySection(idSection, pageNum);
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+        public static List<ClimaticPublication> getPublicationBySection(int idSection, int pageNum , int rowspPage)
+        {
+            try
+            {
+                return DBcontext.getPublicationBySection(idSection, pageNum,rowspPage);
             }
             catch (Exception ex)
             {
