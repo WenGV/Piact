@@ -13,16 +13,6 @@ namespace CeNAT_CEMEDE.Meteorologia.PIACT.Controllers
 {
     public class HomeController : Controller
     {
-        //private IMediaPublicationRepository _mediaRepository;
-
-        //public HomeController(IMediaPublicationRepository mediaRepository)
-        //{
-        //    _mediaRepository = mediaRepository;
-        //}
-
-        private MediaPublicationRepository _mediaRepository = new MediaPublicationRepository();
-
-        //
         // GET: /Home/ Last update
         public ActionResult Index()
         {
@@ -351,6 +341,7 @@ namespace CeNAT_CEMEDE.Meteorologia.PIACT.Controllers
             {
                 if (HttpContext.Request.IsAjaxRequest())
                 {
+                    MediaPublicationRepository _mediaRepository = new MediaPublicationRepository();
                     List<ClimaticPublication> Publication_List = new List<ClimaticPublication>();
 
                     Session["Publication_List"] = _mediaRepository.getPublicationBySection(section);

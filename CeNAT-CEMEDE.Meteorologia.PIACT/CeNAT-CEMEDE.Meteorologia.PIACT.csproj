@@ -432,6 +432,9 @@
     <Content Include="Views\Login\UsersIndex.cshtml" />
     <Content Include="Views\Login\UsersEdit.cshtml" />
     <Content Include="Views\Biblioteca\Index.cshtml" />
+    <Content Include="Views\Biblioteca\Videos.cshtml" />
+    <Content Include="Views\Publisher\CreateVideo.cshtml" />
+    <Content Include="Views\Biblioteca\ClimaticCharts.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
