@@ -13,6 +13,7 @@ sessvars = function () {
             else if (window["attachEvent"]) { window.attachEvent("onunload", f) }
             else { this.prefs.autoFlush = false };
         }
+
     }; x.$.$$ = {
         compactOutput: false, includeProtos: false, includeFunctions: false, detectCirculars: true, restoreCirculars: true, make: function (arg, restore) { this.restore = restore; this.mem = []; this.pathMem = []; return this.toJsonStringArray(arg).join(''); }, toObject: function (x) {
             if (!this.cleaner) {
@@ -955,18 +956,18 @@ function ajax_get_region_info_map(lang) {
 
 
 function ajax_get_member_info_sitemap(lang) {
-    $.ajax({
-        url: "../Home/worldWeatherGetCountries_Map",
-        type: "GET",
-        dataType: "text",
-        async: false,
-        success: function (Jdata) {
-            member_json_data_map = JSON.parse(JSON.parse(Jdata));
-        },
-        error: function () {
-            console.log("ERROR!!!");
-        }
-    });
+    //$.ajax({
+    //    url: "../Home/worldWeatherGetCountries_Map",
+    //    type: "GET",
+    //    dataType: "text",
+    //    async: false,
+    //    success: function (Jdata) {
+    //        member_json_data_map = JSON.parse(JSON.parse(Jdata));
+    //    },
+    //    error: function () {
+    //        console.log("ERROR!!!");
+    //    }
+    //});
 }
 
 //end geneate site map

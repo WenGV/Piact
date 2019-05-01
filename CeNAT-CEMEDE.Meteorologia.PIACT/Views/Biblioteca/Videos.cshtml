@@ -2,17 +2,9 @@
     ViewBag.Title = "";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
-<style>
-    .vid {
-        cursor: pointer;
-    }
 
-        .vid:hover img {
-            color: #FFFF00;
-            opacity: 0.7;
-        }
-</style>
-<img src="~/img/video.jpg" class="imgcomplete" />
+
+<section id="library-wrapper">
 
 <section>
     <div id="" class="widthnormal paddingfoot textclass col-xs-8 col-xs-offset-2">
@@ -27,7 +19,7 @@
 <section class="audio-video-interviews">
     <div id="" class="widthnormal paddingfoot textclass col-xs-8 col-xs-offset-2">
         <h2 class="titular" id="lblCategory" value="4">Videos</h2>
-        <h4 class="subtitulo" id="lblSection" value="20">Videos</h4>
+        <h4 class="subtitulo" id="lblSection" value="20">Consulta sobre un tema de interes</h4>
         <input hidden id="pageNum" name="pageNum" value="1" />
         @if (Session["email"] != null)
          {
@@ -36,6 +28,8 @@
         </div>
           }
     </div>
+</section>
+
 </section>
 
 <div class="form-group">
@@ -52,7 +46,6 @@
     </div>
 </div>
 
-<hr />
 
 <div id="panel" class="center-block panel-default paddingssmall textclass col-xs-12 col-sm-8 col-sm-offset-2 climatic-publication-content">
 
@@ -69,14 +62,3 @@
 
 <script src="~/Scripts/ClimaticPublication/InterviewsVideo.js"></script>
 @*<script src="/Scripts/ClimaticPublication/climaticPubLoad.js"></script>*@
-<!-- Global site tag (gtag.js) - Google Analytics -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=UA-116689455-1"></script>
-
-<script>
-    window.dataLayer = window.dataLayer || [];
-    function gtag() { dataLayer.push(arguments); }
-    gtag('js', new Date());
-
-    gtag('config', 'UA-116689455-1');
-
-</script>
