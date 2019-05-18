@@ -2889,5 +2889,12 @@ a.poplink {
 
 
 
+/* Videos hover */
+    .vid {
+        cursor: pointer;
+    }
 
-    
+    .vid:hover img {
+        color: #FFFF00;
+        opacity: 0.7;
+    }

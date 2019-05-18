@@ -5,7 +5,7 @@ $(function () {
     var section = {
         'ID': $("#lblSection").attr("value"),
         'pageNum': $("#pageNum").val(),
-        'RowpPage':9
+        'RowpPage': 9
     }
 
     var eventPosition = $(window).innerHeight();//("#panel").height();// This is the height position you want the event to fire on. 70%
@@ -53,7 +53,7 @@ $(function () {
                         var idVideo = source.match(/youtube\.com.*(\?v=|\/embed\/)(.{11})/).pop();
                     }
                     if (idVideo.length == 11) {
-                        var video_img = '<img id="'+ idPublication +'" src="//img.youtube.com/vi/' + idVideo + '/0.jpg" class ="img-responsive img-thumbnail img-rounded crop videoestilo" title = "' + source + '" onClick="showVideo(this);" >';
+                        var video_img = '<img id="' + idPublication + '" src="//img.youtube.com/vi/' + idVideo + '/0.jpg" class ="img-responsive img-thumbnail img-rounded crop videoestilo" title = "' + source + '" onClick="showVideo(this);" >';
                         imageTag = video_img;
                     }
                     //"<iframe  class='visible-xs img-responsive img-thumbnail img-rounded crop videoestilo'   src='" + source + "' frameborder='0'></iframe>" +
@@ -254,9 +254,9 @@ $(function () {
                     //If remainder of the division of counter by three isn't zero, meaning the current publicacion isn't the third one
                     if (counter % 3 != 0) {
                         //If the publication is the first one or the first one in the row.
-                        if (counter == 1 || row_counter == 3) { panel += "<div class='row'>"; }
+                        if (counter == 1 || row_counter == 3) { panel += "<div class='col'>"; }
                         //Prints the publication within its responsive div
-                        panel += "<div class='col-xs-12 col-sm-6 col-md-4 weather-image-column vid'>" + imageTag + "<a id='" + idPublication + "' title = '" + source + "' onClick='showVideo(this);'><h5 class='modal-title' id='myModalLabel'>" + title + "</h5></a>" + "</div>";
+                        panel += "<div class='col-xs-12 col-sm-12 col-md-4 col-lg-4 weather-image-column vid'>" + imageTag + "<a id='" + idPublication + "' title = '" + source + "' onClick='showVideo(this);'><h3 class='modal-title text-center' id='myModalLabel'>" + title + "</h5></a>" + "</div>";
                         //Close row failsafe, in case the number of publications isn't divisible by three
                         if (publications_amount == counter) { panel += "</div>"; }
                         //If row_counter is equal to three, reset its value back to zero, if not add 1 to it.
@@ -268,7 +268,7 @@ $(function () {
                         //Add 1 to row_counter.
                         row_counter++;
                         //Prints the publication within its responsive div
-                        panel += "<div class='col-xs-12 col-sm-6 col-md-4 weather-image-column vid'>" + imageTag + "<a id='"+ idPublication +"'  title = '" + source + "' onClick='showVideo(this);'> <h5 class='modal-title' id='myModalLabel'>" + title + "</h5> </a>" + "</div></div>";
+                        panel += "<div class='col-xs-12 col-sm-12 col-md-4 col-lg-4 weather-image-column vid'>" + imageTag + "<a id='" + idPublication + "'  title = '" + source + "' onClick='showVideo(this);'> <h3 class='modal-title text-center' id='myModalLabel'>" + title + "</h5> </a>" + "</div></div>";
                     }
                     return panel;
                 }
@@ -291,15 +291,14 @@ $(function () {
                     if (publication.img !== "") {
                         interpretarionIMG = "<img  src='data:image/jpeg;base64," + publication.img + "'>";
                     }
-                    if (publication.source != null && publication.source != "" && publication.source != undefined)
-                    {
+                    if (publication.source != null && publication.source != "" && publication.source != undefined) {
                         publication_panel = setSimplePanel(publication.title, publication.interpretation, publication.source, publication.idPublication, interpretarionIMG, publication.State, publications_amount, counter, publication.img, publication.idDisplayMode);
 
                         if (publication_panel == undefined) { row_counter = row_counter--; } else { counter++; publications += publication_panel; }
                     }
                 });
                 $("#panel").append(publications);
-                if (section.ID == 20) { pag(lengthVideo,section.RowpPage); }
+                if (section.ID == 20) { pag(lengthVideo, section.RowpPage); }
             }
             catch (e) {
                 eventPosition = 0;
@@ -424,7 +423,7 @@ $(function () {
         $("#next-page").on("click", function () {
             var currentPage = $(".pagination li.active").index(); // Identify the current active page
             // Check to make sure that navigating to the next page will not exceed the total number of pages
-            if (currentPage >=  totalPages || totalPages == undefined) {
+            if (currentPage >= totalPages || totalPages == undefined) {
                 return false; // Return false (i.e., cannot navigate any further, since it would exceed the maximum number of pages)
             } else {
                 currentPage++; // Increment the page by one
